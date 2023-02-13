@@ -1,0 +1,1078 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="JobSearchPreferences" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ufa="clr-namespace:UiPath.Form.Activities;assembly=UiPath.Form.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="out_SearchPageURL" Type="OutArgument(x:String)" />
+    <x:Property Name="in_LinkedInBrowser" Type="InArgument(ui:Browser)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1306,1885</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>JobSearchPreferences_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="31">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="26">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.Form.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap:VirtualizedContainerService.HintSize="1316,1820" sap2010:WorkflowViewState.IdRef="Sequence_10">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <TryCatch sap2010:Annotation.AnnotationText="Try excuting the workflow and catch any known unknown or Business exception that may happen, log the exception then send the default search page url to the next workflow or end the automation as this is a vital step for the rest of the automation" DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1274,1728" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+      <TryCatch.Variables>
+        <Variable x:TypeArguments="x:String" Default="https://www.linkedin.com/jobs/search/?f_E=2&amp;f_WT=2&amp;keywords=rpa%20developer%20uipath&amp;location=Worldwide" Name="DefaultURL" />
+      </TryCatch.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <TryCatch.Try>
+        <Flowchart sap2010:Annotation.AnnotationText="Display a Form for user to choose his job search preferences and create the search page url and save it in out_SearchPageURL argument&#xD;&#xA;&#xD;&#xA;Pre: Logged into LinkedIn - on homepage&#xA;Post: Logged into LinkedIn - on homepage" DisplayName="JobSearchPreferences" sap:VirtualizedContainerService.HintSize="1236,1437" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+          <Flowchart.Variables>
+            <Variable x:TypeArguments="x:String" Name="FormOutput" />
+            <Variable x:TypeArguments="x:Boolean" Name="FormDismissed" />
+            <Variable x:TypeArguments="njl:JObject" Name="JsonSearchFormResults" />
+            <Variable x:TypeArguments="x:String" Default="https://www.linkedin.com/jobs/search/?location=Worldwide&amp;" Name="BasicURL" />
+            <Variable x:TypeArguments="x:String" Name="CustomURL" />
+            <Variable x:TypeArguments="x:String" Name="ExperienceLevel">
+              <Variable.Default>
+                <Literal x:TypeArguments="x:String" Value="" />
+              </Variable.Default>
+            </Variable>
+            <Variable x:TypeArguments="x:String" Name="JobTitle">
+              <Variable.Default>
+                <Literal x:TypeArguments="x:String" Value="" />
+              </Variable.Default>
+            </Variable>
+            <Variable x:TypeArguments="x:String" Name="JobType">
+              <Variable.Default>
+                <Literal x:TypeArguments="x:String" Value="" />
+              </Variable.Default>
+            </Variable>
+            <Variable x:TypeArguments="x:String" Name="JobSite">
+              <Variable.Default>
+                <Literal x:TypeArguments="x:String" Value="" />
+              </Variable.Default>
+            </Variable>
+            <Variable x:TypeArguments="x:String" Name="EasyApply">
+              <Variable.Default>
+                <Literal x:TypeArguments="x:String" Value="" />
+              </Variable.Default>
+            </Variable>
+            <Variable x:TypeArguments="x:Int32" Default="1" Name="IterationFactor" />
+          </Flowchart.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <av:Point x:Key="ShapeLocation">530,2.5</av:Point>
+              <av:Size x:Key="ShapeSize">60,75</av:Size>
+              <x:Double x:Key="Height">1329.4319999999998</x:Double>
+              <av:PointCollection x:Key="ConnectorLocation">560,77.5 560,120</av:PointCollection>
+              <x:Double x:Key="Width">1202</x:Double>
+              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Flowchart.StartNode>
+            <x:Reference>__ReferenceID8</x:Reference>
+          </Flowchart.StartNode>
+          <FlowStep x:Name="__ReferenceID8">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <av:Point x:Key="ShapeLocation">389,120</av:Point>
+                <av:Size x:Key="ShapeSize">342,377</av:Size>
+                <av:PointCollection x:Key="ConnectorLocation">560,497 560,656.5</av:PointCollection>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ufa:FormActivity CreateFormActivityFileName="{x:Null}" CreateFormActivityFilePath="{x:Null}" FormFieldsInputData="{x:Null}" IconPath="{x:Null}" LocalCSSFilePath="{x:Null}" SelectedButton="{x:Null}" TimeoutInSeconds="{x:Null}" WindowPositionLeft="{x:Null}" WindowPositionTop="{x:Null}" sap2010:Annotation.AnnotationText="Create and display a form with search preferences for user to choose from and save the result to the FormOutput variable" CreateFormId="0d4ae566-d5f2-4dac-8d71-f309deff65f6" DisableMaximizeButton="False" DisableMinimizeButton="False" DisableSanitize="False" Dismissed="[FormDismissed]" DisplayName="Create Form - search preferences" FormFieldsOutputData="[FormOutput]" FormHeight="400" FormSchema="%[{&quot;label&quot;:&quot;Choose your search preferences&quot;,&quot;optionsLabelPosition&quot;:&quot;right&quot;,&quot;tooltip&quot;:&quot;Default values are worldwide location with remote type and experience of entry level&quot;,&quot;inline&quot;:true,&quot;tableView&quot;:false,&quot;defaultValue&quot;:&quot;defaultValues&quot;,&quot;values&quot;:[{&quot;label&quot;:&quot;Default Values&quot;,&quot;value&quot;:&quot;defaultValues&quot;,&quot;shortcut&quot;:&quot;D&quot;},{&quot;label&quot;:&quot;Enter Manual Values&quot;,&quot;value&quot;:&quot;enterManualValues&quot;,&quot;shortcut&quot;:&quot;E&quot;}],&quot;validate&quot;:{&quot;required&quot;:true},&quot;errorLabel&quot;:&quot;Please Choose your search preferences&quot;,&quot;key&quot;:&quot;chooseYourSearchPreferences&quot;,&quot;type&quot;:&quot;radio&quot;,&quot;labelWidth&quot;:30,&quot;input&quot;:true},{&quot;title&quot;:&quot;Search Preferences&quot;,&quot;theme&quot;:&quot;primary&quot;,&quot;collapsible&quot;:false,&quot;key&quot;:&quot;searchPreferences&quot;,&quot;conditional&quot;:{&quot;show&quot;:true,&quot;when&quot;:&quot;chooseYourSearchPreferences&quot;,&quot;eq&quot;:&quot;enterManualValues&quot;},&quot;type&quot;:&quot;panel&quot;,&quot;label&quot;:&quot;Search Preferences&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;components&quot;:[{&quot;label&quot;:&quot;Job Title&quot;,&quot;placeholder&quot;:&quot;Enter Job Title&quot;,&quot;showWordCount&quot;:true,&quot;showCharCount&quot;:true,&quot;tableView&quot;:true,&quot;validate&quot;:{&quot;required&quot;:true},&quot;key&quot;:&quot;jobTitle&quot;,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true},{&quot;label&quot;:&quot;Table&quot;,&quot;cellAlignment&quot;:&quot;left&quot;,&quot;key&quot;:&quot;table&quot;,&quot;type&quot;:&quot;table&quot;,&quot;numRows&quot;:1,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;rows&quot;:[[{&quot;components&quot;:[{&quot;label&quot;:&quot;Experience Level&quot;,&quot;tableView&quot;:false,&quot;values&quot;:[{&quot;label&quot;:&quot;Internship&quot;,&quot;value&quot;:&quot;1&quot;,&quot;shortcut&quot;:&quot;&quot;},{&quot;label&quot;:&quot;Entry level&quot;,&quot;value&quot;:&quot;2&quot;,&quot;shortcut&quot;:&quot;&quot;},{&quot;label&quot;:&quot;Associate&quot;,&quot;value&quot;:&quot;3&quot;,&quot;shortcut&quot;:&quot;&quot;},{&quot;label&quot;:&quot;Mid-Senior level&quot;,&quot;value&quot;:&quot;4&quot;,&quot;shortcut&quot;:&quot;&quot;},{&quot;label&quot;:&quot;Director&quot;,&quot;value&quot;:&quot;5&quot;,&quot;shortcut&quot;:&quot;&quot;},{&quot;label&quot;:&quot;Executive&quot;,&quot;value&quot;:&quot;6&quot;,&quot;shortcut&quot;:&quot;&quot;}],&quot;validate&quot;:{&quot;onlyAvailableItems&quot;:false},&quot;key&quot;:&quot;experienceLevel&quot;,&quot;type&quot;:&quot;selectboxes&quot;,&quot;input&quot;:true,&quot;inputType&quot;:&quot;checkbox&quot;,&quot;defaultValue&quot;:{&quot;internship&quot;:false,&quot;entryLevel&quot;:false,&quot;associate&quot;:false,&quot;midSeniorLevel&quot;:false,&quot;director&quot;:false,&quot;executive&quot;:false}}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;Job Type&quot;,&quot;tableView&quot;:false,&quot;values&quot;:[{&quot;label&quot;:&quot;Full-time&quot;,&quot;value&quot;:&quot;F&quot;,&quot;shortcut&quot;:&quot;&quot;},{&quot;label&quot;:&quot;Part-time&quot;,&quot;value&quot;:&quot;P&quot;,&quot;shortcut&quot;:&quot;&quot;},{&quot;label&quot;:&quot;Contract&quot;,&quot;value&quot;:&quot;C&quot;,&quot;shortcut&quot;:&quot;&quot;},{&quot;label&quot;:&quot;Internship&quot;,&quot;value&quot;:&quot;I&quot;,&quot;shortcut&quot;:&quot;&quot;}],&quot;validate&quot;:{&quot;onlyAvailableItems&quot;:false},&quot;key&quot;:&quot;jobType&quot;,&quot;type&quot;:&quot;selectboxes&quot;,&quot;input&quot;:true,&quot;inputType&quot;:&quot;checkbox&quot;,&quot;defaultValue&quot;:{&quot;fullTime&quot;:false,&quot;partTime&quot;:false,&quot;contract&quot;:false,&quot;internship&quot;:false}}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;Job Site&quot;,&quot;tableView&quot;:false,&quot;values&quot;:[{&quot;label&quot;:&quot;On-site&quot;,&quot;value&quot;:&quot;1&quot;,&quot;shortcut&quot;:&quot;&quot;},{&quot;label&quot;:&quot;Remote&quot;,&quot;value&quot;:&quot;2&quot;,&quot;shortcut&quot;:&quot;&quot;},{&quot;label&quot;:&quot;Hybrid&quot;,&quot;value&quot;:&quot;3&quot;,&quot;shortcut&quot;:&quot;&quot;}],&quot;validate&quot;:{&quot;onlyAvailableItems&quot;:false},&quot;key&quot;:&quot;jobSite&quot;,&quot;type&quot;:&quot;selectboxes&quot;,&quot;input&quot;:true,&quot;inputType&quot;:&quot;checkbox&quot;,&quot;defaultValue&quot;:{&quot;onSite&quot;:false,&quot;remote&quot;:false,&quot;hybrid&quot;:false}}]}]]},{&quot;label&quot;:&quot;Easy Apply&quot;,&quot;tooltip&quot;:&quot;Only Search For Easy Apply Jobs&quot;,&quot;tableView&quot;:false,&quot;key&quot;:&quot;easyApply&quot;,&quot;type&quot;:&quot;checkbox&quot;,&quot;input&quot;:true,&quot;defaultValue&quot;:false}]},{&quot;type&quot;:&quot;button&quot;,&quot;label&quot;:&quot;Submit&quot;,&quot;key&quot;:&quot;submit&quot;,&quot;disableOnInvalid&quot;:true,&quot;input&quot;:true,&quot;tableView&quot;:false}]" FormTheme="{}{&quot;Activities&quot;:[&quot;FORMS&quot;],&quot;Id&quot;:&quot;100120&quot;,&quot;Name&quot;:&quot;Default&quot;,&quot;BaseCss&quot;:&quot;../../assets/css/themes/uipath.bootstrap.min.css&quot;,&quot;ImageSrc&quot;:&quot;../../assets/themeicons/uipath.png&quot;,&quot;OverrideCssUrl&quot;:&quot;../../assets/css/themes/uipath.custom.css&quot;,&quot;UserStyleOverrides&quot;:&quot;&quot;,&quot;Properties&quot;:&quot;&quot;,&quot;IsCustomTheme&quot;:false,&quot;Version&quot;:1,&quot;ThemeVersion&quot;:1}" FormTitle="Search Preferences" FormWidth="800" GenerateInputFields="True" sap:VirtualizedContainerService.HintSize="342,377" sap2010:WorkflowViewState.IdRef="FormActivity_1" IsReadOnly="False" MaxColumnsForSchemaGeneration="6" RunDoBlockFirst="False" RunInIsolatedMode="False" StartAsMinimized="False">
+              <ufa:FormActivity.Body>
+                <ActivityAction x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="304,194" sap2010:WorkflowViewState.IdRef="Sequence_1">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Assign sap2010:Annotation.AnnotationText="Convert the FormOutput to JSON and save it in JsonSearchFormResults variable" DisplayName="Assign - &quot;JsonSearchFormResults&quot;" sap:VirtualizedContainerService.HintSize="262,102" sap2010:WorkflowViewState.IdRef="Assign_1">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="njl:JObject">[JsonSearchFormResults]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="njl:JObject">[JObject.Parse(FormOutput)]</InArgument>
+                      </Assign.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Assign>
+                  </Sequence>
+                </ActivityAction>
+              </ufa:FormActivity.Body>
+              <ufa:FormActivity.DelayBody>
+                <ActivityAction x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+                  <Delay Duration="00:00:00.2500000" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                </ActivityAction>
+              </ufa:FormActivity.DelayBody>
+              <ufa:FormActivity.FormFieldsCollection>
+                <scg:Dictionary x:TypeArguments="x:String, Argument" />
+              </ufa:FormActivity.FormFieldsCollection>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ufa:FormActivity>
+            <FlowStep.Next>
+              <FlowDecision x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="Check if user closed the form without submitting" Condition="[FormDismissed]" DisplayName="Flow Decision" sap:VirtualizedContainerService.HintSize="79,87" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <av:Point x:Key="ShapeLocation">520.5,656.5</av:Point>
+                    <av:Size x:Key="ShapeSize">79,87</av:Size>
+                    <av:PointCollection x:Key="TrueConnector">520.5,700 410,700</av:PointCollection>
+                    <av:PointCollection x:Key="FalseConnector">599.5,700 695,700</av:PointCollection>
+                    <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <FlowDecision.True>
+                  <FlowStep x:Name="__ReferenceID0">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <av:Point x:Key="ShapeLocation">210,653</av:Point>
+                        <av:Size x:Key="ShapeSize">200,94</av:Size>
+                        <av:PointCollection x:Key="ConnectorLocation">310,653 310,653</av:PointCollection>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Throw sap2010:Annotation.AnnotationText="If Search Form is dismissed Throw a BusinessRuleException to be handled in catch section" DisplayName="Throw - BRE &quot;User Cancelled&quot;" Exception="[New BusinessRuleException(&quot;User Cancelled the search and exited the process&quot;)]" sap:VirtualizedContainerService.HintSize="200,94" sap2010:WorkflowViewState.IdRef="Throw_1">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Throw>
+                    <FlowStep.Next>
+                      <x:Reference>__ReferenceID0</x:Reference>
+                    </FlowStep.Next>
+                  </FlowStep>
+                </FlowDecision.True>
+                <FlowDecision.False>
+                  <FlowSwitch x:TypeArguments="x:String" x:Name="__ReferenceID2" sap2010:Annotation.AnnotationText="Switch user Form result to use default or manual search preferences" DisplayName="Flow Switch" Expression="[JsonSearchFormResults.GetValue(&quot;chooseYourSearchPreferences&quot;).ToString]" sap:VirtualizedContainerService.HintSize="70,87" sap2010:WorkflowViewState.IdRef="FlowSwitch`1_3">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <av:Point x:Key="ShapeLocation">695,656.5</av:Point>
+                        <av:Size x:Key="ShapeSize">70,87</av:Size>
+                        <av:PointCollection x:Key="defaultValuesConnector">712.5,743.5 712.5,773.5 540,773.5 540,873.5</av:PointCollection>
+                        <av:PointCollection x:Key="enterManualValuesConnector">747.5,743.5 747.5,773.5 960,773.5 960,863.5</av:PointCollection>
+                        <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <FlowStep x:Key="enterManualValues" x:Name="__ReferenceID6">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <av:Point x:Key="ShapeLocation">860,863.5</av:Point>
+                          <av:Size x:Key="ShapeSize">200,93</av:Size>
+                          <av:PointCollection x:Key="ConnectorLocation">960,956.5 960,1018.5</av:PointCollection>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:LogMessage sap2010:Annotation.AnnotationText="Log the job title the user entered with &quot;Trace&quot; log level" DisplayName="Log Message - [Trace] Manual Values" sap:VirtualizedContainerService.HintSize="200,93" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Trace" Message="[&quot;Manual Values&quot;]">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:LogMessage>
+                      <FlowStep.Next>
+                        <FlowStep x:Name="__ReferenceID4">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <av:Point x:Key="ShapeLocation">860,1018.5</av:Point>
+                              <av:Size x:Key="ShapeSize">200,123</av:Size>
+                              <av:PointCollection x:Key="ConnectorLocation">960,1141.5 960,1191.5</av:PointCollection>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:ForEach x:TypeArguments="njl:JProperty" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Iterate through the properties of the JsonSearchFormResults variable to get user's preferences" DisplayName="For Each - &quot;searchField&quot; in &quot;JsonSearchFormResults&quot;" sap:VirtualizedContainerService.HintSize="200,123" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[JsonSearchFormResults.Properties]">
+                            <ui:ForEach.Body>
+                              <ActivityAction x:TypeArguments="njl:JProperty">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="njl:JProperty" Name="searchField" />
+                                </ActivityAction.Argument>
+                                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="538,751" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <Switch x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Switch for the property name" DisplayName="Switch - &quot;searchField&quot; Name" Expression="[searchField.Name]" sap:VirtualizedContainerService.HintSize="496,659" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <Sequence x:Key="jobTitle" sap:VirtualizedContainerService.HintSize="376,356" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <Assign sap2010:Annotation.AnnotationText="Assign the value of the searchField with proper format to JobTitle variable" DisplayName="Assign - &quot;JobTitle&quot;" sap:VirtualizedContainerService.HintSize="334,102" sap2010:WorkflowViewState.IdRef="Assign_3">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:String">[JobTitle]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:String">[searchField.Value.ToString.Trim.Replace(" ", "%20")]</InArgument>
+                                        </Assign.Value>
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </Assign>
+                                      <ui:LogMessage sap2010:Annotation.AnnotationText="Log the job title the user entered with &quot;Trace&quot; log level" DisplayName="Log Message - [Trace] Job title" sap:VirtualizedContainerService.HintSize="334,122" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Trace" Message="[&quot;Job Title: &quot;+ searchField.Value.ToString.Trim]">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:LogMessage>
+                                    </Sequence>
+                                    <TryCatch x:Key="experienceLevel" sap2010:Annotation.AnnotationText="Try excuting the workflow and catch any ArgumentException may caused by the Form behaviour of setting the Values to designated data only if one field chosen and log the error" sap:VirtualizedContainerService.HintSize="1106,1542" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <TryCatch.Try>
+                                        <Sequence sap:VirtualizedContainerService.HintSize="1068,1284" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <Assign sap2010:Annotation.AnnotationText="Assign 1 to &quot;IterationFactor&quot;" DisplayName="Assign - &quot;IterationFactor&quot; " sap:VirtualizedContainerService.HintSize="1026,91" sap2010:WorkflowViewState.IdRef="Assign_7">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Int32">[IterationFactor]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Int32">1</InArgument>
+                                            </Assign.Value>
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                          </Assign>
+                                          <ui:InterruptibleWhile sap2010:Annotation.AnnotationText="Loop from 1 to 6 to handle all possible ExperienceLevel values" DisplayName="While - &quot;iterationFactor&quot; less than or equal 6" sap:VirtualizedContainerService.HintSize="1026,888" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+                                            <ui:InterruptibleWhile.Body>
+                                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="990,692" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                                <If sap2010:Annotation.AnnotationText="Check if user chose this level by checking the value of the current searchField and IterationFactor" Condition="[CBool(searchField.Value(IterationFactor.ToString))]" DisplayName="If - Level Chosen" sap:VirtualizedContainerService.HintSize="948,469" sap2010:WorkflowViewState.IdRef="If_3">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <If.Then>
+                                                    <If sap2010:Annotation.AnnotationText="Check if this is the first chosen ExperienceLevel by checking the length of the ExperienceLevel variable" Condition="[ExperienceLevel.Length&gt;0]" DisplayName="If - First Experience" sap:VirtualizedContainerService.HintSize="569,291" sap2010:WorkflowViewState.IdRef="If_2">
+                                                      <sap:WorkflowViewStateService.ViewState>
+                                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                        </scg:Dictionary>
+                                                      </sap:WorkflowViewStateService.ViewState>
+                                                      <If.Then>
+                                                        <Assign sap2010:Annotation.AnnotationText="Assign the value of the searchField with proper format to ExperienceLevel variable" DisplayName="Assign - &quot;ExperienceLevel&quot;" sap:VirtualizedContainerService.HintSize="262,102" sap2010:WorkflowViewState.IdRef="Assign_4">
+                                                          <Assign.To>
+                                                            <OutArgument x:TypeArguments="x:String">[ExperienceLevel]</OutArgument>
+                                                          </Assign.To>
+                                                          <Assign.Value>
+                                                            <InArgument x:TypeArguments="x:String">[ExperienceLevel+"%2C"+IterationFactor.ToString]</InArgument>
+                                                          </Assign.Value>
+                                                          <sap:WorkflowViewStateService.ViewState>
+                                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                            </scg:Dictionary>
+                                                          </sap:WorkflowViewStateService.ViewState>
+                                                        </Assign>
+                                                      </If.Then>
+                                                      <If.Else>
+                                                        <Assign sap2010:Annotation.AnnotationText="Assign the value of the searchField with proper format to ExperienceLevel variable" DisplayName="Assign - &quot;ExperienceLevel&quot; First" sap:VirtualizedContainerService.HintSize="262,102" sap2010:WorkflowViewState.IdRef="Assign_5">
+                                                          <Assign.To>
+                                                            <OutArgument x:TypeArguments="x:String">[ExperienceLevel]</OutArgument>
+                                                          </Assign.To>
+                                                          <Assign.Value>
+                                                            <InArgument x:TypeArguments="x:String">[IterationFactor.ToString]</InArgument>
+                                                          </Assign.Value>
+                                                          <sap:WorkflowViewStateService.ViewState>
+                                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                            </scg:Dictionary>
+                                                          </sap:WorkflowViewStateService.ViewState>
+                                                        </Assign>
+                                                      </If.Else>
+                                                    </If>
+                                                  </If.Then>
+                                                  <If.Else>
+                                                    <ui:Comment sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_1" Text="Do Nothing" />
+                                                  </If.Else>
+                                                </If>
+                                                <Assign sap2010:Annotation.AnnotationText="Increase &quot;IterationFactor&quot; By 1" DisplayName="Assign - &quot;IterationFactor&quot; + 1" sap:VirtualizedContainerService.HintSize="948,91" sap2010:WorkflowViewState.IdRef="Assign_6">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:Int32">[IterationFactor]</OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:Int32">[IterationFactor+1]</InArgument>
+                                                  </Assign.Value>
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                </Assign>
+                                              </Sequence>
+                                            </ui:InterruptibleWhile.Body>
+                                            <ui:InterruptibleWhile.Condition>
+                                              <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="IterationFactor&lt;=6" />
+                                            </ui:InterruptibleWhile.Condition>
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                          </ui:InterruptibleWhile>
+                                          <ui:LogMessage sap2010:Annotation.AnnotationText="Log the experience levels the user chose with &quot;Trace&quot; log level" DisplayName="Log Message - [Trace] Experience Level" sap:VirtualizedContainerService.HintSize="1026,133" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Trace" Message="[&quot;Experience Level: &quot;+ searchField.Value.ToString.Trim]">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                          </ui:LogMessage>
+                                        </Sequence>
+                                      </TryCatch.Try>
+                                      <TryCatch.Catches>
+                                        <Catch x:TypeArguments="s:ArgumentException" sap:VirtualizedContainerService.HintSize="1072,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <ActivityAction x:TypeArguments="s:ArgumentException">
+                                            <ActivityAction.Argument>
+                                              <DelegateInArgument x:TypeArguments="s:ArgumentException" Name="exception" />
+                                            </ActivityAction.Argument>
+                                            <ui:LogMessage sap2010:Annotation.AnnotationText="Log the exception with &quot;Warn&quot; log level" DisplayName="Log Message - [Warn]" sap:VirtualizedContainerService.HintSize="334,122" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[exception]">
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                            </ui:LogMessage>
+                                          </ActivityAction>
+                                        </Catch>
+                                      </TryCatch.Catches>
+                                    </TryCatch>
+                                    <TryCatch x:Key="jobType" sap2010:Annotation.AnnotationText="Try excuting the workflow and catch any ArgumentException may caused by the Form behaviour of setting the Values to designated data only if one field chosen and log the error" sap:VirtualizedContainerService.HintSize="1028,2472" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <TryCatch.Try>
+                                        <Sequence sap:VirtualizedContainerService.HintSize="990,2214" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <If sap2010:Annotation.AnnotationText="Check if user chose this level by checking the value of the current searchField for&quot;F&quot;" Condition="[CBool(searchField.Value(&quot;F&quot;))]" DisplayName="If - Fulltime Type chosen" sap:VirtualizedContainerService.HintSize="948,460" sap2010:WorkflowViewState.IdRef="If_16">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <If.Then>
+                                              <If sap2010:Annotation.AnnotationText="Check if this is the first chosen JobType by checking the length of the JobType variable" Condition="[JobType.Length&gt;0]" DisplayName="If - First Job Type" sap:VirtualizedContainerService.HintSize="569,281" sap2010:WorkflowViewState.IdRef="If_15">
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                                <If.Then>
+                                                  <Assign sap2010:Annotation.AnnotationText="Assign the value of the searchField with proper format to JobType variable" DisplayName="Assign - &quot;JobType&quot;" sap:VirtualizedContainerService.HintSize="262,102" sap2010:WorkflowViewState.IdRef="Assign_22">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:String">[JobType]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:String">[JobType+"%2CF"]</InArgument>
+                                                    </Assign.Value>
+                                                    <sap:WorkflowViewStateService.ViewState>
+                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                      </scg:Dictionary>
+                                                    </sap:WorkflowViewStateService.ViewState>
+                                                  </Assign>
+                                                </If.Then>
+                                                <If.Else>
+                                                  <Assign sap2010:Annotation.AnnotationText="Assign the value of the searchField with proper format to JobType variable" DisplayName="Assign - &quot;JobType&quot; First" sap:VirtualizedContainerService.HintSize="262,102" sap2010:WorkflowViewState.IdRef="Assign_23">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:String">[JobType]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:String">F</InArgument>
+                                                    </Assign.Value>
+                                                    <sap:WorkflowViewStateService.ViewState>
+                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                      </scg:Dictionary>
+                                                    </sap:WorkflowViewStateService.ViewState>
+                                                  </Assign>
+                                                </If.Else>
+                                              </If>
+                                            </If.Then>
+                                            <If.Else>
+                                              <ui:Comment sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_8" Text="Do Nothing" />
+                                            </If.Else>
+                                          </If>
+                                          <If sap2010:Annotation.AnnotationText="Check if user chose this level by checking the value of the current searchField for&quot;P&quot;" Condition="[CBool(searchField.Value(&quot;P&quot;))]" DisplayName="If - Parttime Type chosen" sap:VirtualizedContainerService.HintSize="948,460" sap2010:WorkflowViewState.IdRef="If_7">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <If.Then>
+                                              <If sap2010:Annotation.AnnotationText="Check if this is the first chosen JobType by checking the length of the JobType variable" Condition="[JobType.Length&gt;0]" DisplayName="If - First Job Type" sap:VirtualizedContainerService.HintSize="569,281" sap2010:WorkflowViewState.IdRef="If_6">
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                                <If.Then>
+                                                  <Assign sap2010:Annotation.AnnotationText="Assign the value of the searchField with proper format to JobType variable" DisplayName="Assign - &quot;JobType&quot;" sap:VirtualizedContainerService.HintSize="262,102" sap2010:WorkflowViewState.IdRef="Assign_10">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:String">[JobType]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:String">[JobType+"%2CP"]</InArgument>
+                                                    </Assign.Value>
+                                                    <sap:WorkflowViewStateService.ViewState>
+                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                      </scg:Dictionary>
+                                                    </sap:WorkflowViewStateService.ViewState>
+                                                  </Assign>
+                                                </If.Then>
+                                                <If.Else>
+                                                  <Assign sap2010:Annotation.AnnotationText="Assign the value of the searchField with proper format to JobType variable" DisplayName="Assign - &quot;JobType&quot; First" sap:VirtualizedContainerService.HintSize="262,102" sap2010:WorkflowViewState.IdRef="Assign_11">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:String">[JobType]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:String">P</InArgument>
+                                                    </Assign.Value>
+                                                    <sap:WorkflowViewStateService.ViewState>
+                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                      </scg:Dictionary>
+                                                    </sap:WorkflowViewStateService.ViewState>
+                                                  </Assign>
+                                                </If.Else>
+                                              </If>
+                                            </If.Then>
+                                            <If.Else>
+                                              <ui:Comment sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_3" Text="Do Nothing" />
+                                            </If.Else>
+                                          </If>
+                                          <If sap2010:Annotation.AnnotationText="Check if user chose this level by checking the value of the current searchField for&quot;C&quot;" Condition="[CBool(searchField.Value(&quot;C&quot;))]" DisplayName="If - Contract Type chosen" sap:VirtualizedContainerService.HintSize="948,460" sap2010:WorkflowViewState.IdRef="If_9">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <If.Then>
+                                              <If sap2010:Annotation.AnnotationText="Check if this is the first chosen JobType by checking the length of the JobType variable" Condition="[JobType.Length&gt;0]" DisplayName="If - First Job Type" sap:VirtualizedContainerService.HintSize="569,281" sap2010:WorkflowViewState.IdRef="If_8">
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                                <If.Then>
+                                                  <Assign sap2010:Annotation.AnnotationText="Assign the value of the searchField with proper format to JobType variable" DisplayName="Assign - &quot;JobType&quot;" sap:VirtualizedContainerService.HintSize="262,102" sap2010:WorkflowViewState.IdRef="Assign_12">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:String">[JobType]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:String">[JobType+"%2CC"]</InArgument>
+                                                    </Assign.Value>
+                                                    <sap:WorkflowViewStateService.ViewState>
+                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                      </scg:Dictionary>
+                                                    </sap:WorkflowViewStateService.ViewState>
+                                                  </Assign>
+                                                </If.Then>
+                                                <If.Else>
+                                                  <Assign sap2010:Annotation.AnnotationText="Assign the value of the searchField with proper format to JobType variable" DisplayName="Assign - &quot;JobType&quot; First" sap:VirtualizedContainerService.HintSize="262,102" sap2010:WorkflowViewState.IdRef="Assign_13">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:String">[JobType]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:String">C</InArgument>
+                                                    </Assign.Value>
+                                                    <sap:WorkflowViewStateService.ViewState>
+                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                      </scg:Dictionary>
+                                                    </sap:WorkflowViewStateService.ViewState>
+                                                  </Assign>
+                                                </If.Else>
+                                              </If>
+                                            </If.Then>
+                                            <If.Else>
+                                              <ui:Comment sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_4" Text="Do Nothing" />
+                                            </If.Else>
+                                          </If>
+                                          <If sap2010:Annotation.AnnotationText="Check if user chose this level by checking the value of the current searchField for&quot;I&quot;" Condition="[CBool(searchField.Value(&quot;I&quot;))]" DisplayName="If - Internship Type chosen" sap:VirtualizedContainerService.HintSize="948,460" sap2010:WorkflowViewState.IdRef="If_11">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <If.Then>
+                                              <If sap2010:Annotation.AnnotationText="Check if this is the first chosen JobType by checking the length of the JobType variable" Condition="[JobType.Length&gt;0]" DisplayName="If - First Job Type" sap:VirtualizedContainerService.HintSize="569,281" sap2010:WorkflowViewState.IdRef="If_10">
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                                <If.Then>
+                                                  <Assign sap2010:Annotation.AnnotationText="Assign the value of the searchField with proper format to JobType variable" DisplayName="Assign - &quot;JobType&quot;" sap:VirtualizedContainerService.HintSize="262,102" sap2010:WorkflowViewState.IdRef="Assign_14">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:String">[JobType]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:String">[JobType+"%2CI"]</InArgument>
+                                                    </Assign.Value>
+                                                    <sap:WorkflowViewStateService.ViewState>
+                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                      </scg:Dictionary>
+                                                    </sap:WorkflowViewStateService.ViewState>
+                                                  </Assign>
+                                                </If.Then>
+                                                <If.Else>
+                                                  <Assign sap2010:Annotation.AnnotationText="Assign the value of the searchField with proper format to JobType variable" DisplayName="Assign - &quot;JobType&quot; First" sap:VirtualizedContainerService.HintSize="262,102" sap2010:WorkflowViewState.IdRef="Assign_15">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:String">[JobType]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:String">I</InArgument>
+                                                    </Assign.Value>
+                                                    <sap:WorkflowViewStateService.ViewState>
+                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                      </scg:Dictionary>
+                                                    </sap:WorkflowViewStateService.ViewState>
+                                                  </Assign>
+                                                </If.Else>
+                                              </If>
+                                            </If.Then>
+                                            <If.Else>
+                                              <ui:Comment sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_5" Text="Do Nothing" />
+                                            </If.Else>
+                                          </If>
+                                          <ui:LogMessage sap2010:Annotation.AnnotationText="Log the job types the user chose with &quot;Trace&quot; log level" DisplayName="Log Message - [Trace] Job Type" sap:VirtualizedContainerService.HintSize="948,122" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Trace" Message="[&quot;Job Type: &quot;+ searchField.Value.ToString.Trim]">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                          </ui:LogMessage>
+                                        </Sequence>
+                                      </TryCatch.Try>
+                                      <TryCatch.Catches>
+                                        <Catch x:TypeArguments="s:ArgumentException" sap:VirtualizedContainerService.HintSize="994,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <ActivityAction x:TypeArguments="s:ArgumentException">
+                                            <ActivityAction.Argument>
+                                              <DelegateInArgument x:TypeArguments="s:ArgumentException" Name="exception" />
+                                            </ActivityAction.Argument>
+                                            <ui:LogMessage sap2010:Annotation.AnnotationText="Log the exception with &quot;Warn&quot; log level" DisplayName="Log Message - [Warn]" sap:VirtualizedContainerService.HintSize="334,122" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Warn" Message="[exception]">
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                            </ui:LogMessage>
+                                          </ActivityAction>
+                                        </Catch>
+                                      </TryCatch.Catches>
+                                    </TryCatch>
+                                    <TryCatch x:Key="jobSite" sap2010:Annotation.AnnotationText="Try excuting the workflow and catch any ArgumentException may caused by the Form behaviour of setting the Values to designated data only if one field chosen and log the error" sap:VirtualizedContainerService.HintSize="1106,1520" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <TryCatch.Try>
+                                        <Sequence sap:VirtualizedContainerService.HintSize="1068,1262" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <Assign sap2010:Annotation.AnnotationText="Assign 1 to &quot;IterationFactor&quot;" DisplayName="Assign - &quot;IterationFactor&quot;" sap:VirtualizedContainerService.HintSize="1026,91" sap2010:WorkflowViewState.IdRef="Assign_16">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Int32">[IterationFactor]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Int32">1</InArgument>
+                                            </Assign.Value>
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                          </Assign>
+                                          <ui:InterruptibleWhile sap2010:Annotation.AnnotationText="Loop from 1 to 3 to handle all possible JobSite values" DisplayName="While - &quot;IterationFactor&quot; is less than or equal 3" sap:VirtualizedContainerService.HintSize="1026,877" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_2">
+                                            <ui:InterruptibleWhile.Body>
+                                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="990,681" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                                <If sap2010:Annotation.AnnotationText="Check if user chose this site by checking the value of the current searchField and IterationFactor" Condition="[CBool(searchField.Value(IterationFactor.ToString))]" DisplayName="If - Site Chosen" sap:VirtualizedContainerService.HintSize="948,458" sap2010:WorkflowViewState.IdRef="If_13">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <If.Then>
+                                                    <If sap2010:Annotation.AnnotationText="Check if this is the first chosen JobSite by checking the length of the JobSite variable" Condition="[JobSite.Length&gt;0]" DisplayName="If - First Site" sap:VirtualizedContainerService.HintSize="569,280" sap2010:WorkflowViewState.IdRef="If_12">
+                                                      <sap:WorkflowViewStateService.ViewState>
+                                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                        </scg:Dictionary>
+                                                      </sap:WorkflowViewStateService.ViewState>
+                                                      <If.Then>
+                                                        <Assign sap2010:Annotation.AnnotationText="Assign the value of the searchField with proper format to JobSite variable" DisplayName="Assign - &quot;JobSite&quot;" sap:VirtualizedContainerService.HintSize="262,102" sap2010:WorkflowViewState.IdRef="Assign_17">
+                                                          <Assign.To>
+                                                            <OutArgument x:TypeArguments="x:String">[JobSite]</OutArgument>
+                                                          </Assign.To>
+                                                          <Assign.Value>
+                                                            <InArgument x:TypeArguments="x:String">[JobSite+"%2C"+IterationFactor.ToString]</InArgument>
+                                                          </Assign.Value>
+                                                          <sap:WorkflowViewStateService.ViewState>
+                                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                            </scg:Dictionary>
+                                                          </sap:WorkflowViewStateService.ViewState>
+                                                        </Assign>
+                                                      </If.Then>
+                                                      <If.Else>
+                                                        <Assign sap2010:Annotation.AnnotationText="Assign the value of the searchField with proper format to JobSite variable" DisplayName="Assign - &quot;JobSite&quot; First" sap:VirtualizedContainerService.HintSize="262,102" sap2010:WorkflowViewState.IdRef="Assign_18">
+                                                          <Assign.To>
+                                                            <OutArgument x:TypeArguments="x:String">[JobSite]</OutArgument>
+                                                          </Assign.To>
+                                                          <Assign.Value>
+                                                            <InArgument x:TypeArguments="x:String">[IterationFactor.ToString]</InArgument>
+                                                          </Assign.Value>
+                                                          <sap:WorkflowViewStateService.ViewState>
+                                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                            </scg:Dictionary>
+                                                          </sap:WorkflowViewStateService.ViewState>
+                                                        </Assign>
+                                                      </If.Else>
+                                                    </If>
+                                                  </If.Then>
+                                                  <If.Else>
+                                                    <ui:Comment sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_6" Text="Do Nothing" />
+                                                  </If.Else>
+                                                </If>
+                                                <Assign sap2010:Annotation.AnnotationText="Increase &quot;IterationFactor&quot; by 1" DisplayName="Assign - &quot;IterationFactor&quot; + 1" sap:VirtualizedContainerService.HintSize="948,91" sap2010:WorkflowViewState.IdRef="Assign_19">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:Int32">[iterationFactor]</OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:Int32">[iterationFactor+1]</InArgument>
+                                                  </Assign.Value>
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                </Assign>
+                                              </Sequence>
+                                            </ui:InterruptibleWhile.Body>
+                                            <ui:InterruptibleWhile.Condition>
+                                              <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="IterationFactor&lt;=3" />
+                                            </ui:InterruptibleWhile.Condition>
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                          </ui:InterruptibleWhile>
+                                          <ui:LogMessage sap2010:Annotation.AnnotationText="Log the job sites the user chose with &quot;Trace&quot; log level" DisplayName="Log Message - [Trace] Job Site" sap:VirtualizedContainerService.HintSize="1026,122" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Trace" Message="[&quot;Job Site: &quot;+ searchField.Value.ToString.Trim]">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                          </ui:LogMessage>
+                                        </Sequence>
+                                      </TryCatch.Try>
+                                      <TryCatch.Catches>
+                                        <Catch x:TypeArguments="s:ArgumentException" sap:VirtualizedContainerService.HintSize="1072,21" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <ActivityAction x:TypeArguments="s:ArgumentException">
+                                            <ActivityAction.Argument>
+                                              <DelegateInArgument x:TypeArguments="s:ArgumentException" Name="exception" />
+                                            </ActivityAction.Argument>
+                                            <ui:LogMessage sap2010:Annotation.AnnotationText="Log the exception with &quot;Warn&quot; log level" DisplayName="Log Message - [Warn]" sap:VirtualizedContainerService.HintSize="334,122" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Warn" Message="[exception]">
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                            </ui:LogMessage>
+                                          </ActivityAction>
+                                        </Catch>
+                                      </TryCatch.Catches>
+                                    </TryCatch>
+                                    <Sequence x:Key="easyApply" sap:VirtualizedContainerService.HintSize="683,461" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <If sap2010:Annotation.AnnotationText="Check if user chose easy apply by checking the value of the current searchField" Condition="[CBool(searchField.Value)]" DisplayName="If - &quot;EasyApply&quot; Chosen" sap:VirtualizedContainerService.HintSize="641,281" sap2010:WorkflowViewState.IdRef="If_14">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <If.Then>
+                                          <Assign sap2010:Annotation.AnnotationText="Assign the value of the searchField with proper format to EasyApply variable" DisplayName="Assign - &quot;EasyApply&quot;" sap:VirtualizedContainerService.HintSize="262,102" sap2010:WorkflowViewState.IdRef="Assign_20">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:String">[EasyApply]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:String">f_AL=true</InArgument>
+                                            </Assign.Value>
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                          </Assign>
+                                        </If.Then>
+                                        <If.Else>
+                                          <ui:Comment sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_7" Text="Do Nothing" />
+                                        </If.Else>
+                                      </If>
+                                      <ui:LogMessage sap2010:Annotation.AnnotationText="Log the easy apply the user chose with &quot;Trace&quot; log level" DisplayName="Log Message - [Trace] Easy Apply" sap:VirtualizedContainerService.HintSize="641,122" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Trace" Message="[&quot;Easy Apply: &quot;+ searchField.Value.ToString.Trim]">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:LogMessage>
+                                    </Sequence>
+                                  </Switch>
+                                </Sequence>
+                              </ActivityAction>
+                            </ui:ForEach.Body>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:ForEach>
+                          <FlowStep.Next>
+                            <FlowStep x:Name="__ReferenceID5">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <av:Point x:Key="ShapeLocation">829,1191.5</av:Point>
+                                  <av:Size x:Key="ShapeSize">262,102</av:Size>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Assign sap2010:Annotation.AnnotationText="Assign the Manual chosen values argument to out_SearchPageURL variable" DisplayName="Assign - Manual &quot;out_SearchPageUrl&quot;" sap:VirtualizedContainerService.HintSize="262,102" sap2010:WorkflowViewState.IdRef="Assign_21">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[out_SearchPageURL]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">[BasicURL+"keywords="+JobTitle+"&amp;f_E="+ExperienceLevel+"&amp;f_WT="+JobSite+"&amp;f_JT="+JobType+"&amp;f_AL="+EasyApply]</InArgument>
+                                </Assign.Value>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </Assign>
+                            </FlowStep>
+                          </FlowStep.Next>
+                        </FlowStep>
+                      </FlowStep.Next>
+                    </FlowStep>
+                    <FlowStep x:Key="defaultValues" x:Name="__ReferenceID7">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <av:Point x:Key="ShapeLocation">440,873.5</av:Point>
+                          <av:Size x:Key="ShapeSize">200,93</av:Size>
+                          <av:PointCollection x:Key="ConnectorLocation">540,966.5 540,1019</av:PointCollection>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:LogMessage sap2010:Annotation.AnnotationText="Log the values type the user entered with &quot;Trace&quot; log level" DisplayName="Log Message - [Trace] Manual Values" sap:VirtualizedContainerService.HintSize="200,93" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Trace" Message="[&quot;Default Values&quot;]">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:LogMessage>
+                      <FlowStep.Next>
+                        <FlowStep x:Name="__ReferenceID3">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <av:Point x:Key="ShapeLocation">409,1019</av:Point>
+                              <av:Size x:Key="ShapeSize">262,102</av:Size>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign sap2010:Annotation.AnnotationText="Assign the DefaultURL argument to out_SearchPageURL variable" DisplayName="Assign - Default &quot;out_SearchPageUrl&quot;" sap:VirtualizedContainerService.HintSize="262,102" sap2010:WorkflowViewState.IdRef="Assign_2">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[out_SearchPageURL]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[DefaultURL]</InArgument>
+                            </Assign.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Assign>
+                        </FlowStep>
+                      </FlowStep.Next>
+                    </FlowStep>
+                  </FlowSwitch>
+                </FlowDecision.False>
+              </FlowDecision>
+            </FlowStep.Next>
+          </FlowStep>
+          <x:Reference>__ReferenceID1</x:Reference>
+          <x:Reference>__ReferenceID0</x:Reference>
+          <x:Reference>__ReferenceID2</x:Reference>
+          <x:Reference>__ReferenceID3</x:Reference>
+          <x:Reference>__ReferenceID4</x:Reference>
+          <x:Reference>__ReferenceID5</x:Reference>
+          <x:Reference>__ReferenceID6</x:Reference>
+          <x:Reference>__ReferenceID7</x:Reference>
+        </Flowchart>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="1240,21" sap2010:WorkflowViewState.IdRef="Catch`1_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="ui:BusinessRuleException">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence sap:VirtualizedContainerService.HintSize="725,907" sap2010:WorkflowViewState.IdRef="Sequence_14">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="UseDefaultValues" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage sap2010:Annotation.AnnotationText="Log the error message and its source wirh &quot;Warn&quot; level" DisplayName="Log Message - [Warn] User Closed Form" sap:VirtualizedContainerService.HintSize="683,122" sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="Warn" Message="[&quot;User Closed The Form Without Choosing: &quot;+exception.Source+vbCrLf+exception.Message]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:LogMessage>
+              <ui:MessageBox sap2010:Annotation.AnnotationText="Display a message for the user to let them choose if they want to use default values or exit the process." Buttons="YesNo" Caption="Enter Credentials Manually" ChosenButton="[UseDefaultValues]" DisplayName="Message Box - Prompt For Manual Credentials" sap:VirtualizedContainerService.HintSize="683,101" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;You closed the form without choosing, do you want to continue with default values instead of exit?&quot;]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:MessageBox>
+              <If sap2010:Annotation.AnnotationText="Check if user chose &quot;Yes&quot; to use default values" Condition="[UseDefaultValues.Equals(&quot;Yes&quot;)]" DisplayName="If - User Press &quot;Yes&quot;" sap:VirtualizedContainerService.HintSize="683,512" sap2010:WorkflowViewState.IdRef="If_17">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Assign sap2010:Annotation.AnnotationText="Assign the DefaultURL argument to out_SearchPageURL variable" DisplayName="Assign - Default &quot;out_SearchPageUrl&quot;" sap:VirtualizedContainerService.HintSize="262,102" sap2010:WorkflowViewState.IdRef="Assign_24">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[out_SearchPageURL]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[DefaultURL]</InArgument>
+                    </Assign.Value>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Assign>
+                </If.Then>
+                <If.Else>
+                  <Sequence sap:VirtualizedContainerService.HintSize="376,333" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage sap2010:Annotation.AnnotationText="Log the User Cancel with &quot;Info&quot; level" DisplayName="Log Message - [Info] User Cancelled" sap:VirtualizedContainerService.HintSize="334,122" sap2010:WorkflowViewState.IdRef="LogMessage_15" Level="Info" Message="[&quot;User Cancelled The Process&quot;]">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:LogMessage>
+                    <TerminateWorkflow sap2010:Annotation.AnnotationText="Terminate the Workflow since this is a vital step for the rest of the automation" DisplayName="Terminate Workflow" Exception="[exception]" sap:VirtualizedContainerService.HintSize="334,79" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_2">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </TerminateWorkflow>
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="1240,21" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence sap:VirtualizedContainerService.HintSize="376,437" sap2010:WorkflowViewState.IdRef="Sequence_12">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage sap2010:Annotation.AnnotationText="Log the unknown error message and its source" DisplayName="Log Message - [Error] Unknown Exception" sap:VirtualizedContainerService.HintSize="334,122" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Error" Message="[&quot;Something Went Wrong: &quot; + exception.Source + vbCrLf+ exception.Message]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:LogMessage>
+              <ui:CloseTab sap2010:Annotation.AnnotationText="Close the Browser for clean termination of the process" Browser="[in_LinkedInBrowser]" DisplayName="Close Tab - LinkedIn" sap:VirtualizedContainerService.HintSize="334,64" sap2010:WorkflowViewState.IdRef="CloseTab_1">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:CloseTab>
+              <TerminateWorkflow sap2010:Annotation.AnnotationText="Terminate the Workflow since this is a vital step for the rest of the automation" DisplayName="Terminate Workflow" Exception="[exception]" sap:VirtualizedContainerService.HintSize="334,79" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_1">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </TerminateWorkflow>
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+  </Sequence>
+</Activity>
