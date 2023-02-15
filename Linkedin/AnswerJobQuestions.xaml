@@ -1,0 +1,767 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="AnswerJobQuestions" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_LinkedInBrowser" Type="InArgument(ui:Browser)" />
+    <x:Property Name="in_JobQuestions" Type="InArgument(scg:IEnumerable(ui:UiElement))" />
+    <x:Property Name="in_JobOptions" Type="InArgument(scg:IEnumerable(ui:UiElement))" />
+    <x:Property Name="in_JobSelects" Type="InArgument(scg:IEnumerable(ui:UiElement))" />
+    <x:Property Name="out_UnAnsweredFields" Type="InArgument(x:Boolean)" />
+  </x:Members>
+  <this:AnswerJobQuestions.in_LinkedInBrowser>
+    <InArgument x:TypeArguments="ui:Browser" />
+  </this:AnswerJobQuestions.in_LinkedInBrowser>
+  <this:AnswerJobQuestions.in_JobQuestions>
+    <InArgument x:TypeArguments="scg:IEnumerable(ui:UiElement)" />
+  </this:AnswerJobQuestions.in_JobQuestions>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1955,7742</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>AnswerJobQuestions_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="30">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="28">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Iterate through all possible input fields in page and analyze questions then answer the common questions&#xA;&#xA;Pre: Logged into LinkedIn - on last job processed&#xA;Post: Logged into LinkedIn - on same job" DisplayName="AnswerJobQuestions" sap:VirtualizedContainerService.HintSize="1965,7677" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="ui:Browser" Name="LinkedInBrowser" />
+      <Variable x:TypeArguments="sd:DataTable" Name="ExperienceDataTable" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <TryCatch sap2010:Annotation.AnnotationText="Try excuting the workflow and catch any known or unknown that may happen, log the exception then set &quot;out_UnAnsweredFields&quot; to True" DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1923,7513" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <TryCatch.Try>
+        <Sequence sap:VirtualizedContainerService.HintSize="1885,7277" sap2010:WorkflowViewState.IdRef="Sequence_18">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:ReadRange AddHeaders="True" sap2010:Annotation.AnnotationText="Read the &quot;CV Break In.xlsx&quot; Excel Sheet and save the range in &quot;ExperienceDataTable&quot; variable" DataTable="[ExperienceDataTable]" DisplayName="Read Range - &quot;CV Break In.xlsx&quot;" sap:VirtualizedContainerService.HintSize="1843,129" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Experience" WorkbookPath="CV Break In.xlsx">
+            <ui:ReadRange.Range>
+              <InArgument x:TypeArguments="x:String">
+                <Literal x:TypeArguments="x:String" Value="" />
+              </InArgument>
+            </ui:ReadRange.Range>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ReadRange>
+          <ui:BrowserScope BrowserType="{x:Null}" SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Attach the opened Browser (Chrome) at the &quot;LinkedIn&quot; received from the in_LinkedInBrowser and save it to the LinkedInBrowser variable" Browser="[in_LinkedInBrowser]" DisplayName="Attach Browser - Chrome &quot;LinkedIn&quot;" sap:VirtualizedContainerService.HintSize="1843,7016" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[LinkedInBrowser]">
+            <ui:BrowserScope.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1809,6877" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If sap2010:Annotation.AnnotationText="Check if there is questions by checking the &quot;in_JobQuestions&quot; argument IS NOT NOTHING" Condition="[in_JobQuestions IsNot Nothing]" DisplayName="If - Questions exist" sap:VirtualizedContainerService.HintSize="1767,3033" sap2010:WorkflowViewState.IdRef="If_3">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence sap:VirtualizedContainerService.HintSize="1388,2855" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:String" Name="variable1" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:ForEach x:TypeArguments="ui:UiElement" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Iterate through questions" DisplayName="For Each - Question in &quot;in_JobQuestions&quot;" sap:VirtualizedContainerService.HintSize="1346,2763" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_JobQuestions]">
+                          <ui:ForEach.Body>
+                            <ActivityAction x:TypeArguments="ui:UiElement">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="ui:UiElement" Name="question" />
+                              </ActivityAction.Argument>
+                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1310,2599" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <If sap2010:Annotation.AnnotationText="Check if question about experience by checking its aaname attribute" Condition="[question.Get(&quot;aaname&quot;).ToString.ToLower.Contains(&quot;experience&quot;)]" DisplayName="If - Question about experience" sap:VirtualizedContainerService.HintSize="1268,1835" sap2010:WorkflowViewState.IdRef="If_2">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If.Then>
+                                    <Sequence DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="889,1657" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                                      <Sequence.Variables>
+                                        <Variable x:TypeArguments="x:Boolean" Name="QuestionAnswered" />
+                                      </Sequence.Variables>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <Assign sap2010:Annotation.AnnotationText="Assign False to &quot;QuestionAnswered&quot;" DisplayName="Assign - &quot;QuestionAnswered&quot;" sap:VirtualizedContainerService.HintSize="847,91" sap2010:WorkflowViewState.IdRef="Assign_2">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Boolean">[QuestionAnswered]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                                        </Assign.Value>
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </Assign>
+                                      <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[ExperienceDataTable]" DisplayName="For Each Row - &quot;Technology&quot; in CV" sap:VirtualizedContainerService.HintSize="847,893" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                                        <ui:ForEachRow.Body>
+                                          <ActivityAction x:TypeArguments="sd:DataRow">
+                                            <ActivityAction.Argument>
+                                              <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+                                            </ActivityAction.Argument>
+                                            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="797,746" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                              <If sap2010:Annotation.AnnotationText="Check if the question about the current technology by checking the question's aaname attribute against the value of the first column of the current technology (technology name) " Condition="[question.Get(&quot;aaname&quot;).ToString.ToLower.Contains(row(0).ToString)]" DisplayName="If - Technology mentioned" sap:VirtualizedContainerService.HintSize="755,654" sap2010:WorkflowViewState.IdRef="If_10">
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                                <If.Then>
+                                                  <Sequence sap:VirtualizedContainerService.HintSize="376,465" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                                                    <sap:WorkflowViewStateService.ViewState>
+                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                      </scg:Dictionary>
+                                                    </sap:WorkflowViewStateService.ViewState>
+                                                    <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="Type Into Question The value of the second column (Years of Experience) to answer" DisplayName="Type Into - Question" sap:VirtualizedContainerService.HintSize="334,138" sap2010:WorkflowViewState.IdRef="TypeInto_2" Text="[row(1).ToString]">
+                                                      <ui:TypeInto.Target>
+                                                        <ui:Target ClippingRegion="{x:Null}" Selector="{x:Null}" Element="[question]" Id="637dc46d-15a6-4b33-9206-00dfde3f011f">
+                                                          <ui:Target.TimeoutMS>
+                                                            <InArgument x:TypeArguments="x:Int32" />
+                                                          </ui:Target.TimeoutMS>
+                                                          <ui:Target.WaitForReady>
+                                                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                                                          </ui:Target.WaitForReady>
+                                                        </ui:Target>
+                                                      </ui:TypeInto.Target>
+                                                      <sap:WorkflowViewStateService.ViewState>
+                                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                        </scg:Dictionary>
+                                                      </sap:WorkflowViewStateService.ViewState>
+                                                    </ui:TypeInto>
+                                                    <Assign sap2010:Annotation.AnnotationText="Assign True to &quot;QuestionAnswered&quot;" DisplayName="Assign - &quot;QuestionAnswered&quot;" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="Assign_3">
+                                                      <Assign.To>
+                                                        <OutArgument x:TypeArguments="x:Boolean">[QuestionAnswered]</OutArgument>
+                                                      </Assign.To>
+                                                      <Assign.Value>
+                                                        <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                                      </Assign.Value>
+                                                      <sap:WorkflowViewStateService.ViewState>
+                                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                        </scg:Dictionary>
+                                                      </sap:WorkflowViewStateService.ViewState>
+                                                    </Assign>
+                                                    <ui:Break sap2010:Annotation.AnnotationText="Break of current iteration since it was already answered" sap:VirtualizedContainerService.HintSize="334,64" sap2010:WorkflowViewState.IdRef="Break_1">
+                                                      <sap:WorkflowViewStateService.ViewState>
+                                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                        </scg:Dictionary>
+                                                      </sap:WorkflowViewStateService.ViewState>
+                                                    </ui:Break>
+                                                  </Sequence>
+                                                </If.Then>
+                                                <If.Else>
+                                                  <ui:Comment sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_3" Text="Do Nothing" />
+                                                </If.Else>
+                                              </If>
+                                            </Sequence>
+                                          </ActivityAction>
+                                        </ui:ForEachRow.Body>
+                                      </ui:ForEachRow>
+                                      <If sap2010:Annotation.AnnotationText="Check if technology wasn't in CV by checking &quot;QuestionAnswered&quot; variable" Condition="[Not QuestionAnswered]" DisplayName="If - Technology is Other" sap:VirtualizedContainerService.HintSize="847,397" sap2010:WorkflowViewState.IdRef="If_1">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <If.Then>
+                                          <Sequence sap:VirtualizedContainerService.HintSize="376,219" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="Type Into Question &quot;0&quot; to answer" DisplayName="Type Into - Question" sap:VirtualizedContainerService.HintSize="334,127" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="0">
+                                              <ui:TypeInto.Target>
+                                                <ui:Target ClippingRegion="{x:Null}" Selector="{x:Null}" Element="[question]" Id="637dc46d-15a6-4b33-9206-00dfde3f011f">
+                                                  <ui:Target.TimeoutMS>
+                                                    <InArgument x:TypeArguments="x:Int32" />
+                                                  </ui:Target.TimeoutMS>
+                                                  <ui:Target.WaitForReady>
+                                                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                                                  </ui:Target.WaitForReady>
+                                                </ui:Target>
+                                              </ui:TypeInto.Target>
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                            </ui:TypeInto>
+                                          </Sequence>
+                                        </If.Then>
+                                        <If.Else>
+                                          <ui:Comment sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_1" Text="Do Nothing" />
+                                        </If.Else>
+                                      </If>
+                                      <ui:Continue sap2010:Annotation.AnnotationText="Skip the rest of current iteration and continue" sap:VirtualizedContainerService.HintSize="847,64" sap2010:WorkflowViewState.IdRef="Continue_5">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:Continue>
+                                    </Sequence>
+                                  </If.Then>
+                                  <If.Else>
+                                    <ui:Comment sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_2" Text="Do Nothing" />
+                                  </If.Else>
+                                </If>
+                                <If sap2010:Annotation.AnnotationText="Check if question about salary by checking its aaname attribute" Condition="[question.Get(&quot;aaname&quot;).ToString.ToLower.Contains(&quot;salary&quot;)]" DisplayName="If - Question about salary" sap:VirtualizedContainerService.HintSize="1268,501" sap2010:WorkflowViewState.IdRef="If_11">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If.Then>
+                                    <Sequence sap:VirtualizedContainerService.HintSize="376,323" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="Type Into question &quot;0&quot; to answer" DisplayName="Type Into - Question" sap:VirtualizedContainerService.HintSize="334,127" sap2010:WorkflowViewState.IdRef="TypeInto_3" Text="0">
+                                        <ui:TypeInto.Target>
+                                          <ui:Target ClippingRegion="{x:Null}" Selector="{x:Null}" Element="[question]" Id="637dc46d-15a6-4b33-9206-00dfde3f011f">
+                                            <ui:Target.TimeoutMS>
+                                              <InArgument x:TypeArguments="x:Int32" />
+                                            </ui:Target.TimeoutMS>
+                                            <ui:Target.WaitForReady>
+                                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                                            </ui:Target.WaitForReady>
+                                          </ui:Target>
+                                        </ui:TypeInto.Target>
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:TypeInto>
+                                      <ui:Continue sap2010:Annotation.AnnotationText="Skip the rest of current iteration and continue" sap:VirtualizedContainerService.HintSize="334,64" sap2010:WorkflowViewState.IdRef="Continue_6">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:Continue>
+                                    </Sequence>
+                                  </If.Then>
+                                  <If.Else>
+                                    <ui:Comment sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_4" Text="Do Nothing" />
+                                  </If.Else>
+                                </If>
+                                <Assign sap2010:Annotation.AnnotationText="Assign True to &quot;out_UnAnsweredFields&quot;" DisplayName="Assign - &quot;out_UnAnsweredFields&quot;" sap:VirtualizedContainerService.HintSize="1268,91" sap2010:WorkflowViewState.IdRef="Assign_4">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Boolean">[out_UnAnsweredFields]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                  </Assign.Value>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </Assign>
+                              </Sequence>
+                            </ActivityAction>
+                          </ui:ForEach.Body>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:ForEach>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <ui:Comment sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_10" Text="Do Nothing" />
+                    </If.Else>
+                  </If>
+                  <If sap2010:Annotation.AnnotationText="Check if there is options by checking the &quot;in_JobOptions&quot; argument IS NOT NOTHING" Condition="[in_JobOptions IsNot Nothing]" DisplayName="If - Options exist" sap:VirtualizedContainerService.HintSize="1767,2476" sap2010:WorkflowViewState.IdRef="If_4">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence sap:VirtualizedContainerService.HintSize="1254,2298" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:ForEach x:TypeArguments="ui:UiElement" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Iterate through options" DisplayName="For Each - Choice in &quot;in_JobOptions&quot;" sap:VirtualizedContainerService.HintSize="1212,2206" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[in_JobOptions]">
+                          <ui:ForEach.Body>
+                            <ActivityAction x:TypeArguments="ui:UiElement">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="ui:UiElement" Name="choice" />
+                              </ActivityAction.Argument>
+                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1176,2042" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                                <Sequence.Variables>
+                                  <Variable x:TypeArguments="ui:PlaceholderResolver" Name="EmptyPlaceHolderResolver" />
+                                  <Variable x:TypeArguments="x:String" Name="OptionQuestion" />
+                                </Sequence.Variables>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Assign sap2010:Annotation.AnnotationText="Assign innertext of legend tag to &quot;OptionQuestion&quot;" sap:VirtualizedContainerService.HintSize="1134,102" sap2010:WorkflowViewState.IdRef="Assign_1">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[OptionQuestion]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">[choice.FindFirst(FindScope.FIND_CHILDREN, new Selector("&lt;webctrl tag='LEGEND'/&gt;"),EmptyPlaceHolderResolver).Get("innertext").ToString]</InArgument>
+                                  </Assign.Value>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </Assign>
+                                <If sap2010:Annotation.AnnotationText="Check if question about authority by checking &quot;OptionQuestion&quot; variable" Condition="[OptionQuestion.Contains(&quot;authorized&quot;)]" DisplayName="If - Question about authority" sap:VirtualizedContainerService.HintSize="1134,651" sap2010:WorkflowViewState.IdRef="If_6">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If.Then>
+                                    <Sequence sap:VirtualizedContainerService.HintSize="755,473" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <If sap2010:Annotation.AnnotationText="Check if question about authority in Egypt by checking &quot;OptionQuestion&quot; variable" Condition="[OptionQuestion.Contains(&quot;Egypt&quot;)]" DisplayName="If - Country Is Egypt" sap:VirtualizedContainerService.HintSize="713,277" sap2010:WorkflowViewState.IdRef="If_5">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <If.Then>
+                                          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="Click &quot;Yes&quot; to answer" ClickType="CLICK_SINGLE" DisplayName="Click - &quot;Yes&quot;" sap:VirtualizedContainerService.HintSize="334,99" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                            <ui:Click.CursorPosition>
+                                              <ui:CursorPosition Position="Center">
+                                                <ui:CursorPosition.OffsetX>
+                                                  <InArgument x:TypeArguments="x:Int32" />
+                                                </ui:CursorPosition.OffsetX>
+                                                <ui:CursorPosition.OffsetY>
+                                                  <InArgument x:TypeArguments="x:Int32" />
+                                                </ui:CursorPosition.OffsetY>
+                                              </ui:CursorPosition>
+                                            </ui:Click.CursorPosition>
+                                            <ui:Click.Target>
+                                              <ui:Target ClippingRegion="{x:Null}" Selector="{x:Null}" Element="[choice.FindFirst(FindScope.FIND_CHILDREN, new Selector(&quot;&lt;webctrl tag='LABEL' innertext='*Yes*' /&gt;&quot;),EmptyPlaceHolderResolver)]" Id="bd506f13-61a5-41a5-8757-4b665276c429">
+                                                <ui:Target.TimeoutMS>
+                                                  <InArgument x:TypeArguments="x:Int32" />
+                                                </ui:Target.TimeoutMS>
+                                                <ui:Target.WaitForReady>
+                                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                                </ui:Target.WaitForReady>
+                                              </ui:Target>
+                                            </ui:Click.Target>
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                          </ui:Click>
+                                        </If.Then>
+                                        <If.Else>
+                                          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="Click &quot;No&quot; to answer" ClickType="CLICK_SINGLE" DisplayName="Click - &quot;No&quot;" sap:VirtualizedContainerService.HintSize="334,99" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                            <ui:Click.CursorPosition>
+                                              <ui:CursorPosition Position="Center">
+                                                <ui:CursorPosition.OffsetX>
+                                                  <InArgument x:TypeArguments="x:Int32" />
+                                                </ui:CursorPosition.OffsetX>
+                                                <ui:CursorPosition.OffsetY>
+                                                  <InArgument x:TypeArguments="x:Int32" />
+                                                </ui:CursorPosition.OffsetY>
+                                              </ui:CursorPosition>
+                                            </ui:Click.CursorPosition>
+                                            <ui:Click.Target>
+                                              <ui:Target ClippingRegion="{x:Null}" Selector="{x:Null}" Element="[choice.FindFirst(FindScope.FIND_CHILDREN, new Selector(&quot;&lt;webctrl tag='LABEL' innertext='*No*' /&gt;&quot;),EmptyPlaceHolderResolver)]" Id="b7aceac7-0659-4275-9c90-07a19c323ee7">
+                                                <ui:Target.TimeoutMS>
+                                                  <InArgument x:TypeArguments="x:Int32" />
+                                                </ui:Target.TimeoutMS>
+                                                <ui:Target.WaitForReady>
+                                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                                </ui:Target.WaitForReady>
+                                              </ui:Target>
+                                            </ui:Click.Target>
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                          </ui:Click>
+                                        </If.Else>
+                                      </If>
+                                      <ui:Continue sap2010:Annotation.AnnotationText="Skip the rest of current iteration and continue" sap:VirtualizedContainerService.HintSize="713,64" sap2010:WorkflowViewState.IdRef="Continue_1">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:Continue>
+                                    </Sequence>
+                                  </If.Then>
+                                  <If.Else>
+                                    <ui:Comment sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_5" Text="Do Nothing" />
+                                  </If.Else>
+                                </If>
+                                <If sap2010:Annotation.AnnotationText="Check if question about sponsorship by checking &quot;OptionQuestion&quot; variable" Condition="[OptionQuestion.Contains(&quot;sponsorship&quot;)]" DisplayName="If - Question about sponsorship" sap:VirtualizedContainerService.HintSize="1134,473" sap2010:WorkflowViewState.IdRef="If_7">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If.Then>
+                                    <Sequence sap:VirtualizedContainerService.HintSize="376,295" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="Click &quot;No&quot; to answer" ClickType="CLICK_SINGLE" DisplayName="Click - &quot;No&quot;" sap:VirtualizedContainerService.HintSize="334,99" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                        <ui:Click.CursorPosition>
+                                          <ui:CursorPosition Position="Center">
+                                            <ui:CursorPosition.OffsetX>
+                                              <InArgument x:TypeArguments="x:Int32" />
+                                            </ui:CursorPosition.OffsetX>
+                                            <ui:CursorPosition.OffsetY>
+                                              <InArgument x:TypeArguments="x:Int32" />
+                                            </ui:CursorPosition.OffsetY>
+                                          </ui:CursorPosition>
+                                        </ui:Click.CursorPosition>
+                                        <ui:Click.Target>
+                                          <ui:Target ClippingRegion="{x:Null}" Selector="{x:Null}" Element="[choice.FindFirst(FindScope.FIND_CHILDREN, new Selector(&quot;&lt;webctrl tag='LABEL' innertext='*No*' /&gt;&quot;),EmptyPlaceHolderResolver)]" Id="b7aceac7-0659-4275-9c90-07a19c323ee7">
+                                            <ui:Target.TimeoutMS>
+                                              <InArgument x:TypeArguments="x:Int32" />
+                                            </ui:Target.TimeoutMS>
+                                            <ui:Target.WaitForReady>
+                                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                                            </ui:Target.WaitForReady>
+                                          </ui:Target>
+                                        </ui:Click.Target>
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:Click>
+                                      <ui:Continue sap2010:Annotation.AnnotationText="Skip the rest of current iteration and continue" sap:VirtualizedContainerService.HintSize="334,64" sap2010:WorkflowViewState.IdRef="Continue_2">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:Continue>
+                                    </Sequence>
+                                  </If.Then>
+                                  <If.Else>
+                                    <ui:Comment sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_6" Text="Do Nothing" />
+                                  </If.Else>
+                                </If>
+                                <If sap2010:Annotation.AnnotationText="Check if question about driver's license by checking &quot;OptionQuestion&quot; variable" Condition="[OptionQuestion.Contains(&quot;driver's license&quot;)]" DisplayName="If - Question about driver's license" sap:VirtualizedContainerService.HintSize="1134,473" sap2010:WorkflowViewState.IdRef="If_12">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If.Then>
+                                    <Sequence sap:VirtualizedContainerService.HintSize="376,295" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="Click &quot;Yes&quot; to answer" ClickType="CLICK_SINGLE" DisplayName="Click - &quot;Yes&quot;" sap:VirtualizedContainerService.HintSize="334,99" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                        <ui:Click.CursorPosition>
+                                          <ui:CursorPosition Position="Center">
+                                            <ui:CursorPosition.OffsetX>
+                                              <InArgument x:TypeArguments="x:Int32" />
+                                            </ui:CursorPosition.OffsetX>
+                                            <ui:CursorPosition.OffsetY>
+                                              <InArgument x:TypeArguments="x:Int32" />
+                                            </ui:CursorPosition.OffsetY>
+                                          </ui:CursorPosition>
+                                        </ui:Click.CursorPosition>
+                                        <ui:Click.Target>
+                                          <ui:Target ClippingRegion="{x:Null}" Selector="{x:Null}" Element="[choice.FindFirst(FindScope.FIND_CHILDREN, new Selector(&quot;&lt;webctrl tag='LABEL' innertext='*Yes*' /&gt;&quot;),EmptyPlaceHolderResolver)]" Id="b7aceac7-0659-4275-9c90-07a19c323ee7">
+                                            <ui:Target.TimeoutMS>
+                                              <InArgument x:TypeArguments="x:Int32" />
+                                            </ui:Target.TimeoutMS>
+                                            <ui:Target.WaitForReady>
+                                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                                            </ui:Target.WaitForReady>
+                                          </ui:Target>
+                                        </ui:Click.Target>
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:Click>
+                                      <ui:Continue sap2010:Annotation.AnnotationText="Skip the rest of current iteration and continue" sap:VirtualizedContainerService.HintSize="334,64" sap2010:WorkflowViewState.IdRef="Continue_4">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:Continue>
+                                    </Sequence>
+                                  </If.Then>
+                                  <If.Else>
+                                    <ui:Comment sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_7" Text="Do Nothing" />
+                                  </If.Else>
+                                </If>
+                                <Assign sap2010:Annotation.AnnotationText="Assign True to &quot;out_UnAnsweredFields&quot;" DisplayName="Assign - &quot;out_UnAnsweredFields&quot;" sap:VirtualizedContainerService.HintSize="1134,91" sap2010:WorkflowViewState.IdRef="Assign_5">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Boolean">[out_UnAnsweredFields]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                  </Assign.Value>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </Assign>
+                              </Sequence>
+                            </ActivityAction>
+                          </ui:ForEach.Body>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:ForEach>
+                      </Sequence>
+                    </If.Then>
+                  </If>
+                  <If sap2010:Annotation.AnnotationText="Check if there is selects by checking the &quot;in_JobSelects&quot; argument IS NOT NOTHING" Condition="[in_JobSelects IsNot Nothing]" DisplayName="If - Selects exist" sap:VirtualizedContainerService.HintSize="1767,1196" sap2010:WorkflowViewState.IdRef="If_9">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence sap:VirtualizedContainerService.HintSize="900,1018" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:ForEach x:TypeArguments="ui:UiElement" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Iterate through selects" DisplayName="For Each - Choice in &quot;in_JobSelects&quot;" sap:VirtualizedContainerService.HintSize="858,926" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[in_JobSelects]">
+                          <ui:ForEach.Body>
+                            <ActivityAction x:TypeArguments="ui:UiElement">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="ui:UiElement" Name="choice" />
+                              </ActivityAction.Argument>
+                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="822,762" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                                <Sequence.Variables>
+                                  <Variable x:TypeArguments="ui:PlaceholderResolver" Name="EmptyPlaceHolderResolver" />
+                                  <Variable x:TypeArguments="x:String" Name="OptionQuestion" />
+                                </Sequence.Variables>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <If sap2010:Annotation.AnnotationText="Check if question about authority by checking its aaname attribute" Condition="[choice.Get(&quot;aaname&quot;).ToString.Contains(&quot;english&quot;)]" DisplayName="If - Question about english" sap:VirtualizedContainerService.HintSize="780,539" sap2010:WorkflowViewState.IdRef="If_8">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If.Then>
+                                    <Sequence sap:VirtualizedContainerService.HintSize="401,361" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:SelectItem AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" sap2010:Annotation.AnnotationText="Select &quot;Yes&quot; from current element" DisplayName="Select Item - &quot;Yes&quot;" sap:VirtualizedContainerService.HintSize="359,165" sap2010:WorkflowViewState.IdRef="SelectItem_1" Item="Yes">
+                                        <ui:SelectItem.Items>
+                                          <scg:List x:TypeArguments="x:String" Capacity="4">
+                                            <x:String>Select an option</x:String>
+                                            <x:String>Yes</x:String>
+                                            <x:String>No</x:String>
+                                          </scg:List>
+                                        </ui:SelectItem.Items>
+                                        <ui:SelectItem.Target>
+                                          <ui:Target ClippingRegion="{x:Null}" Selector="{x:Null}" Element="[choice]" Id="e785dbc0-8c6e-43c3-aa26-666094de4c72" InformativeScreenshot="fa27dad0bbc3f73338b03a90b5dca705">
+                                            <ui:Target.TimeoutMS>
+                                              <InArgument x:TypeArguments="x:Int32" />
+                                            </ui:Target.TimeoutMS>
+                                            <ui:Target.WaitForReady>
+                                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                                            </ui:Target.WaitForReady>
+                                          </ui:Target>
+                                        </ui:SelectItem.Target>
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:SelectItem>
+                                      <ui:Continue sap2010:Annotation.AnnotationText="Skip the rest of current iteration and continue" sap:VirtualizedContainerService.HintSize="359,64" sap2010:WorkflowViewState.IdRef="Continue_3">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:Continue>
+                                    </Sequence>
+                                  </If.Then>
+                                  <If.Else>
+                                    <ui:Comment sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_8" Text="Do Nothing" />
+                                  </If.Else>
+                                </If>
+                                <Assign sap2010:Annotation.AnnotationText="Assign True to &quot;out_UnAnsweredFields&quot;" DisplayName="Assign - &quot;out_UnAnsweredFields&quot;" sap:VirtualizedContainerService.HintSize="780,91" sap2010:WorkflowViewState.IdRef="Assign_6">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Boolean">[out_UnAnsweredFields]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                  </Assign.Value>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </Assign>
+                              </Sequence>
+                            </ActivityAction>
+                          </ui:ForEach.Body>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:ForEach>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <ui:Comment sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_9" Text="Do Nothing" />
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </ActivityAction>
+            </ui:BrowserScope.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:BrowserScope>
+        </Sequence>
+      </TryCatch.Try>
+    </TryCatch>
+  </Sequence>
+</Activity>
