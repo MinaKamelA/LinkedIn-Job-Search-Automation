@@ -6,10 +6,10 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>937,2134</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>937,2592</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>IterateJobSearch_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="46">
+    <scg:List x:TypeArguments="x:String" Capacity="27">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -40,7 +40,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="32">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="25">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -68,7 +68,7 @@
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Iterate through Job search results to scrape their data after navigating to the job search page using the in_SearchPageURL&#xA;&#xA;Pre: Logged into LinkedIn - on homepage&#xA;Post: Logged into LinkedIn - on last page of search results" DisplayName="IterateJobSearch" sap:VirtualizedContainerService.HintSize="947,2069" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Iterate through Job search results to scrape their data after navigating to the job search page using the in_SearchPageURL&#xA;&#xA;Pre: Logged into LinkedIn - on homepage&#xA;Post: Logged into LinkedIn - on last page of search results" DisplayName="IterateJobSearch" sap:VirtualizedContainerService.HintSize="947,2527" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:Browser" Name="LinkedInBrowser" />
       <Variable x:TypeArguments="x:Int32" sap2010:Annotation.AnnotationText="A number used to help determine which page of the search results pages the browser currently on &quot;CurrentPage+1&quot; and to navigate to the next page" Default="0" Name="CurrentPage" />
@@ -79,24 +79,25 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch sap2010:Annotation.AnnotationText="Try excuting the workflow and catch any known or unknown that may happen, log the exception then end the automation as this is a vital step for the rest of the automation" DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="905,1905" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch sap2010:Annotation.AnnotationText="Try excuting the workflow and catch any known or unknown that may happen, log the exception then end the automation as this is a vital step for the rest of the automation" DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="905,2363" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Attach the opened Browser (Chrome) at the &quot;LinkedIn&quot; received from the in_LinkedInBrowser and save it to the LinkedInBrowser variable" Browser="[in_LinkedInBrowser]" BrowserType="Chrome" DisplayName="Attach Browser - Chrome &quot;LinkedIn&quot;" sap:VirtualizedContainerService.HintSize="867,1636" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="516ec96d0d480c5cee1089fcc36afd0f" UiBrowser="[LinkedInBrowser]">
+        <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Attach the opened Browser (Chrome) at the &quot;LinkedIn&quot; received from the in_LinkedInBrowser and save it to the LinkedInBrowser variable" Browser="[in_LinkedInBrowser]" BrowserType="Chrome" DisplayName="Attach Browser - Chrome &quot;LinkedIn&quot;" sap:VirtualizedContainerService.HintSize="867,2094" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="516ec96d0d480c5cee1089fcc36afd0f" UiBrowser="[LinkedInBrowser]">
           <ui:BrowserScope.Body>
             <ActivityAction x:TypeArguments="x:Object">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="833,1459" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="833,1917" sap2010:WorkflowViewState.IdRef="Sequence_2">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:String" Name="Pages" />
                   <Variable x:TypeArguments="x:Int32" Name="PagesCount" />
                   <Variable x:TypeArguments="x:String" Name="Title" />
+                  <Variable x:TypeArguments="x:Boolean" Name="PaginationExist" />
                 </Sequence.Variables>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -110,36 +111,84 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:NavigateTo>
-                <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Get the text from the pagination DIV in the page to get the number of pages to iterate through" DisplayName="Get Text - Pagination DIV number of pages" sap:VirtualizedContainerService.HintSize="791,148" sap2010:WorkflowViewState.IdRef="GetValue_1">
-                  <ui:GetValue.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b40b1675-b560-4971-b8c1-beab745295d3" InformativeScreenshot="a1824560b99b2cd54c7e2c28e83e172e" Selector="&lt;html app='chrome.exe' title='*LinkedIn*' /&gt;&lt;webctrl tag='DIV' class='jobs-search-results-list__pagination pv5 artdeco-pagination ember-view' /&gt;" WaitForReady="COMPLETE">
+                <ui:UiElementExists sap2010:Annotation.AnnotationText="Check if Pagination Div exist and save the result to &quot;PaginationExist&quot; variable" DisplayName="Element Exists - Pagination DIV number of pages" Exists="[PaginationExist]" sap:VirtualizedContainerService.HintSize="791,148" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+                  <ui:UiElementExists.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="0ac5e6c5-8ff8-47cd-a673-569a1bd65ee0" InformativeScreenshot="2ecf07728c30f9987ea421449dcb904e" Selector="&lt;html app='chrome.exe' title='*LinkedIn*' /&gt;&lt;webctrl tag='DIV' class='jobs-search-results-list__pagination pv5 artdeco-pagination ember-view' /&gt;">
                       <ui:Target.TimeoutMS>
                         <InArgument x:TypeArguments="x:Int32" />
                       </ui:Target.TimeoutMS>
+                      <ui:Target.WaitForReady>
+                        <InArgument x:TypeArguments="ui:WaitForReady" />
+                      </ui:Target.WaitForReady>
                     </ui:Target>
-                  </ui:GetValue.Target>
-                  <ui:GetValue.Value>
-                    <OutArgument x:TypeArguments="x:String">[Pages]</OutArgument>
-                  </ui:GetValue.Value>
+                  </ui:UiElementExists.Target>
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                </ui:GetValue>
-                <Assign sap2010:Annotation.AnnotationText="Assign the total number of pages to the &quot;PagesCount&quot; variable" DisplayName="Assign - &quot;PagesCount&quot;" sap:VirtualizedContainerService.HintSize="791,102" sap2010:WorkflowViewState.IdRef="Assign_1">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:Int32">[PagesCount]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:Int32">[CInt(Pages.Split({"of "},StringSplitOptions.None)(1))]</InArgument>
-                  </Assign.Value>
+                </ui:UiElementExists>
+                <If sap2010:Annotation.AnnotationText="Check if Pagination Div Exist by checking &quot;PaginationExist&quot; variable" Condition="[PaginationExist]" DisplayName="If - &quot;PaginationExist&quot;" sap:VirtualizedContainerService.HintSize="791,560" sap2010:WorkflowViewState.IdRef="If_2">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                </Assign>
+                  <If.Then>
+                    <Sequence sap:VirtualizedContainerService.HintSize="376,382" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Get the text from the pagination DIV in the page to get the number of pages to iterate through" DisplayName="Get Text - Pagination DIV number of pages" sap:VirtualizedContainerService.HintSize="334,148" sap2010:WorkflowViewState.IdRef="GetValue_1">
+                        <ui:GetValue.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b40b1675-b560-4971-b8c1-beab745295d3" InformativeScreenshot="a1824560b99b2cd54c7e2c28e83e172e" Selector="&lt;html app='chrome.exe' title='*LinkedIn*' /&gt;&lt;webctrl tag='DIV' class='jobs-search-results-list__pagination pv5 artdeco-pagination ember-view' /&gt;" WaitForReady="COMPLETE">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                          </ui:Target>
+                        </ui:GetValue.Target>
+                        <ui:GetValue.Value>
+                          <OutArgument x:TypeArguments="x:String">[Pages]</OutArgument>
+                        </ui:GetValue.Value>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:GetValue>
+                      <Assign sap2010:Annotation.AnnotationText="Assign the total number of pages to the &quot;PagesCount&quot; variable" DisplayName="Assign - &quot;PagesCount&quot;" sap:VirtualizedContainerService.HintSize="334,102" sap2010:WorkflowViewState.IdRef="Assign_1">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Int32">[PagesCount]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Int32">[CInt(Pages.Split({"of "},StringSplitOptions.None)(1))]</InArgument>
+                        </Assign.Value>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Assign>
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Assign sap2010:Annotation.AnnotationText="Assign one to the &quot;PagesCount&quot; variable" DisplayName="Assign - &quot;PagesCount&quot;" sap:VirtualizedContainerService.HintSize="262,91" sap2010:WorkflowViewState.IdRef="Assign_4">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[PagesCount]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">1</InArgument>
+                      </Assign.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Assign>
+                  </If.Else>
+                </If>
                 <ui:InterruptibleWhile sap2010:Annotation.AnnotationText="Loop until CurrentPage is the last page in the search results pages" Condition="[CurrentPage&lt;=PagesCount-1]" DisplayName="While - &quot;CurrentPage&quot; IS NOT last page" sap:VirtualizedContainerService.HintSize="791,896" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
                   <ui:InterruptibleWhile.Body>
                     <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="755,700" sap2010:WorkflowViewState.IdRef="Sequence_3">
