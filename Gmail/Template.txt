@@ -1,0 +1,3 @@
+Hello,
+This is a confirmation email and report of your job apply robot on {0} at {1}.
+Best regards.
