@@ -5,7 +5,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>663,720</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>663,965</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ScrapeJobs_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="33">
@@ -45,7 +45,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="58">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="30">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -78,7 +78,7 @@
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Scrape the jobs details of the current job search results page&#xA;&#xA;Pre: Logged into LinkedIn - on job search results page&#xA;Post: Logged into LinkedIn - on same job search results page" DisplayName="ScrapeJobs" sap:VirtualizedContainerService.HintSize="476,655" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Scrape the jobs details of the current job search results page&#xA;&#xA;Pre: Logged into LinkedIn - on job search results page&#xA;Post: Logged into LinkedIn - on same job search results page" DisplayName="ScrapeJobs" sap:VirtualizedContainerService.HintSize="476,900" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="JobsDataTable" />
       <Variable x:TypeArguments="x:String" Name="JobDetails" />
@@ -90,14 +90,14 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch sap2010:Annotation.AnnotationText="Try excuting the workflow and catch any known unknown or Business exception that may happen and log the exception." DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="434,491" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch sap2010:Annotation.AnnotationText="Try excuting the workflow and catch any known unknown or Business exception that may happen and log the exception." DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="434,736" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence sap:VirtualizedContainerService.HintSize="951,2781" sap2010:WorkflowViewState.IdRef="Sequence_26">
+        <Sequence sap:VirtualizedContainerService.HintSize="1659,3659" sap2010:WorkflowViewState.IdRef="Sequence_26">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:Boolean" Name="FileExist" />
             <Variable x:TypeArguments="ui:Browser" Name="LinkedInBrowser" />
@@ -107,134 +107,125 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:BuildDataTable sap2010:Annotation.AnnotationText="Build the &quot;JobsDataTable&quot;" DataTable="[JobsDataTable]" DisplayName="Build Data Table - &quot;JobsDataTable&quot;" sap:VirtualizedContainerService.HintSize="909,90" sap2010:WorkflowViewState.IdRef="BuildDataTable_2" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Job_x0020_Title&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;URL&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Easy_x0020_Apply&quot; msdata:Caption=&quot;&quot; type=&quot;xs:boolean&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
+          <ui:BuildDataTable sap2010:Annotation.AnnotationText="Build the &quot;JobsDataTable&quot;" DataTable="[JobsDataTable]" DisplayName="Build Data Table - &quot;JobsDataTable&quot;" sap:VirtualizedContainerService.HintSize="1617,90" sap2010:WorkflowViewState.IdRef="BuildDataTable_2" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Job_x0020_Title&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;URL&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Easy_x0020_Apply&quot; msdata:Caption=&quot;&quot; type=&quot;xs:boolean&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:BuildDataTable>
-          <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Attach the opened Browser (Chrome) at the &quot;LinkedIn&quot; received from the in_LinkedInBrowser" Browser="[in_LinkedInBrowser]" BrowserType="Chrome" DisplayName="Attach Browser - Chrome &quot;LinkedIn&quot;" sap:VirtualizedContainerService.HintSize="909,1969" sap2010:WorkflowViewState.IdRef="BrowserScope_4" InformativeScreenshot="30ab83194dc065cd22e6c3d9295602f2" UiBrowser="[LinkedInBrowser]">
+          <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Attach the opened Browser (Chrome) at the &quot;LinkedIn&quot; received from the in_LinkedInBrowser" Browser="[in_LinkedInBrowser]" BrowserType="Chrome" DisplayName="Attach Browser - Chrome &quot;LinkedIn&quot;" sap:VirtualizedContainerService.HintSize="1617,2847" sap2010:WorkflowViewState.IdRef="BrowserScope_4" InformativeScreenshot="30ab83194dc065cd22e6c3d9295602f2" UiBrowser="[LinkedInBrowser]">
             <ui:BrowserScope.Body>
               <ActivityAction x:TypeArguments="x:Object">
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="875,1792" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1583,2670" sap2010:WorkflowViewState.IdRef="Sequence_10">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="sd:DataRow" Default="[JobsDataTable.NewRow()]" Name="JobRow" />
+                    <Variable x:TypeArguments="x:Boolean" Name="JobListExist" />
                   </Sequence.Variables>
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:FindChildren sap2010:Annotation.AnnotationText="Find the children of the UL list of jobs and save them in &quot;JobsList&quot; variable" Children="[JobsList]" DisplayName="Find Children - UL Jobs list" Filter="&lt;webctrl /&gt;" sap:VirtualizedContainerService.HintSize="833,148" sap2010:WorkflowViewState.IdRef="FindChildren_1" Scope="FIND_CHILDREN">
-                    <ui:FindChildren.Target>
-                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="59ab445a-7096-44d2-8cf2-4227141e1113" InformativeScreenshot="440663b4dfbdc1d1fcd5f4df90e6cc33" Selector="&lt;html app='chrome.exe' title='*LinkedIn*' /&gt;&lt;webctrl parentid='main' tag='UL' parentclass='jobs-search-results-list*' class='scaffold-layout__list-container' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;main&amp;gt;div&amp;gt;section&amp;gt;div&amp;gt;ul' /&gt;" WaitForReady="COMPLETE">
+                  <ui:UiElementExists sap2010:Annotation.AnnotationText="Check if search results exist and save the result in &quot;JobListExist&quot; variable" DisplayName="Element Exists - Search results &quot;UL&quot;" Exists="[JobListExist]" sap:VirtualizedContainerService.HintSize="1541,110" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
+                    <ui:UiElementExists.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="32e2ae9f-40c7-433b-9b41-d5f46d1a2fdd" Selector="&lt;html app='chrome.exe' title='*LinkedIn*' /&gt;&lt;webctrl parentid='main' tag='UL' parentclass='jobs-search-results-list*' class='scaffold-layout__list-container' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;main&amp;gt;div&amp;gt;section&amp;gt;div&amp;gt;ul' /&gt;">
                         <ui:Target.TimeoutMS>
                           <InArgument x:TypeArguments="x:Int32" />
                         </ui:Target.TimeoutMS>
+                        <ui:Target.WaitForReady>
+                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                        </ui:Target.WaitForReady>
                       </ui:Target>
-                    </ui:FindChildren.Target>
+                    </ui:UiElementExists.Target>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                  </ui:FindChildren>
-                  <ui:ForEach x:TypeArguments="ui:UiElement" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Iterate through jobs &quot;element&quot; in &quot;JobsList&quot;" DisplayName="For Each - LI (Job) in UL &quot;JobsList&quot;" sap:VirtualizedContainerService.HintSize="833,1512" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[JobsList]">
-                    <ui:ForEach.Body>
-                      <ActivityAction x:TypeArguments="ui:UiElement">
-                        <ActivityAction.Argument>
-                          <DelegateInArgument x:TypeArguments="ui:UiElement" Name="element" />
-                        </ActivityAction.Argument>
-                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="797,1348" sap2010:WorkflowViewState.IdRef="Sequence_22">
-                          <Sequence.Variables>
-                            <Variable x:TypeArguments="ui:UiElement" Name="JobElement" />
-                            <Variable x:TypeArguments="ui:IPlaceholderResolver" Name="EmptyPlaceholderResolver" />
-                            <Variable x:TypeArguments="x:String" Name="Language" />
-                            <Variable x:TypeArguments="x:String" Name="LanguageCode" />
-                          </Sequence.Variables>
+                  </ui:UiElementExists>
+                  <If sap2010:Annotation.AnnotationText="Check if search results exist by checking the &quot;JobListExist&quot; to be True" Condition="[JobListExist]" DisplayName="If - Search results exist" sap:VirtualizedContainerService.HintSize="1541,2428" sap2010:WorkflowViewState.IdRef="If_4">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence sap:VirtualizedContainerService.HintSize="1296,2250" sap2010:WorkflowViewState.IdRef="Sequence_31">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:FindChildren sap2010:Annotation.AnnotationText="Find the children of the UL list of jobs and save them in &quot;JobsList&quot; variable" Children="[JobsList]" DisplayName="Find Children - UL Jobs list" Filter="&lt;webctrl /&gt;" sap:VirtualizedContainerService.HintSize="1254,148" sap2010:WorkflowViewState.IdRef="FindChildren_1" Scope="FIND_CHILDREN">
+                          <ui:FindChildren.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="59ab445a-7096-44d2-8cf2-4227141e1113" InformativeScreenshot="440663b4dfbdc1d1fcd5f4df90e6cc33" Selector="&lt;html app='chrome.exe' title='*LinkedIn*' /&gt;&lt;webctrl parentid='main' tag='UL' parentclass='jobs-search-results-list*' class='scaffold-layout__list-container' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;main&amp;gt;div&amp;gt;section&amp;gt;div&amp;gt;ul' /&gt;" WaitForReady="COMPLETE">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                            </ui:Target>
+                          </ui:FindChildren.Target>
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" sap2010:Annotation.AnnotationText="Click the job element" ClickType="CLICK_SINGLE" DisplayName="Click - job &quot;element&quot;" sap:VirtualizedContainerService.HintSize="755,99" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="False">
-                            <ui:Click.CursorPosition>
-                              <ui:CursorPosition Position="Center">
-                                <ui:CursorPosition.OffsetX>
-                                  <InArgument x:TypeArguments="x:Int32" />
-                                </ui:CursorPosition.OffsetX>
-                                <ui:CursorPosition.OffsetY>
-                                  <InArgument x:TypeArguments="x:Int32" />
-                                </ui:CursorPosition.OffsetY>
-                              </ui:CursorPosition>
-                            </ui:Click.CursorPosition>
-                            <ui:Click.Target>
-                              <ui:Target ClippingRegion="{x:Null}" Selector="{x:Null}" Element="[element]" Id="0f6ec9f6-0eeb-46fb-83bc-2718c172c1c4" WaitForReady="COMPLETE">
-                                <ui:Target.TimeoutMS>
-                                  <InArgument x:TypeArguments="x:Int32" />
-                                </ui:Target.TimeoutMS>
-                              </ui:Target>
-                            </ui:Click.Target>
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                          </ui:Click>
-                          <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Get the job details text and save it in &quot;JobDetails&quot; variable" DisplayName="Get Text - &quot;JobDetails&quot; SPAN" sap:VirtualizedContainerService.HintSize="755,148" sap2010:WorkflowViewState.IdRef="GetValue_1">
-                            <ui:GetValue.Target>
-                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="9f86bfc7-d2f8-4db7-ac70-525fee05b949" InformativeScreenshot="a30feab820882011734fc1caa2fc1b0e" Selector="&lt;html app='chrome.exe' title='*LinkedIn*' /&gt;&lt;webctrl parentid='job-details' tag='SPAN' /&gt;" WaitForReady="COMPLETE">
-                                <ui:Target.TimeoutMS>
-                                  <InArgument x:TypeArguments="x:Int32" />
-                                </ui:Target.TimeoutMS>
-                              </ui:Target>
-                            </ui:GetValue.Target>
-                            <ui:GetValue.Value>
-                              <OutArgument x:TypeArguments="x:String">[JobDetails]</OutArgument>
-                            </ui:GetValue.Value>
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                          </ui:GetValue>
-                          <be:LanguageDetector sap2010:Annotation.AnnotationText="Detect the language of the &quot;JobDetails&quot; and save the result in Language and LanguageCode variables" DisplayName="Language Detector" sap:VirtualizedContainerService.HintSize="755,94" sap2010:WorkflowViewState.IdRef="LanguageDetector_1" LanguageCode="[LanguageCode]" LanguageName="[Language]" Text="[JobDetails]">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                          </be:LanguageDetector>
-                          <If sap2010:Annotation.AnnotationText="Check the language of the job details by checking if LanguageCode variable equal &quot;en&quot;" Condition="[LanguageCode.Equals(&quot;en&quot;)]" DisplayName="If - Job language IS English" sap:VirtualizedContainerService.HintSize="755,795" sap2010:WorkflowViewState.IdRef="If_1">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <If.Then>
-                              <Sequence sap:VirtualizedContainerService.HintSize="376,617" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                        </ui:FindChildren>
+                        <ui:ForEach x:TypeArguments="ui:UiElement" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Iterate through jobs &quot;element&quot; in &quot;JobsList&quot;" DisplayName="For Each - LI (Job) in UL &quot;JobsList&quot;" sap:VirtualizedContainerService.HintSize="1254,1970" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[JobsList]">
+                          <ui:ForEach.Body>
+                            <ActivityAction x:TypeArguments="ui:UiElement">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="ui:UiElement" Name="element" />
+                              </ActivityAction.Argument>
+                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1218,1806" sap2010:WorkflowViewState.IdRef="Sequence_22">
                                 <Sequence.Variables>
-                                  <Variable x:TypeArguments="x:String" Name="EasyApply" />
+                                  <Variable x:TypeArguments="ui:UiElement" Name="JobElement" />
+                                  <Variable x:TypeArguments="ui:IPlaceholderResolver" Name="EmptyPlaceholderResolver" />
+                                  <Variable x:TypeArguments="x:String" Name="Language" />
+                                  <Variable x:TypeArguments="x:String" Name="LanguageCode" />
                                 </Sequence.Variables>
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Get the text of the apply button to determine if the job is easy apply or not" DisplayName="Get Text - Apply BUTTON" sap:VirtualizedContainerService.HintSize="334,148" sap2010:WorkflowViewState.IdRef="GetValue_2">
+                                <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" sap2010:Annotation.AnnotationText="Click the job element" ClickType="CLICK_SINGLE" DisplayName="Click - job &quot;element&quot;" sap:VirtualizedContainerService.HintSize="1176,99" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="False">
+                                  <ui:Click.CursorPosition>
+                                    <ui:CursorPosition Position="Center">
+                                      <ui:CursorPosition.OffsetX>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:CursorPosition.OffsetX>
+                                      <ui:CursorPosition.OffsetY>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:CursorPosition.OffsetY>
+                                    </ui:CursorPosition>
+                                  </ui:Click.CursorPosition>
+                                  <ui:Click.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Selector="{x:Null}" Element="[element]" Id="0f6ec9f6-0eeb-46fb-83bc-2718c172c1c4" WaitForReady="COMPLETE">
+                                      <ui:Target.TimeoutMS>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:Target.TimeoutMS>
+                                    </ui:Target>
+                                  </ui:Click.Target>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:Click>
+                                <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Get the job details text and save it in &quot;JobDetails&quot; variable" DisplayName="Get Text - &quot;JobDetails&quot; SPAN" sap:VirtualizedContainerService.HintSize="1176,148" sap2010:WorkflowViewState.IdRef="GetValue_1">
                                   <ui:GetValue.Target>
-                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f8cafd15-0efc-4e24-b4ce-c39ab83a5f52" InformativeScreenshot="40cdeb3eab8a7d623f18cb87a690df4f" Selector="&lt;html app='chrome.exe' title='*LinkedIn*' /&gt;&lt;webctrl id='ember*' tag='BUTTON' class='*jobs-apply-button*' /&gt;" WaitForReady="COMPLETE">
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="9f86bfc7-d2f8-4db7-ac70-525fee05b949" InformativeScreenshot="a30feab820882011734fc1caa2fc1b0e" Selector="&lt;html app='chrome.exe' title='*LinkedIn*' /&gt;&lt;webctrl parentid='job-details' tag='SPAN' /&gt;" WaitForReady="COMPLETE">
                                       <ui:Target.TimeoutMS>
                                         <InArgument x:TypeArguments="x:Int32" />
                                       </ui:Target.TimeoutMS>
                                     </ui:Target>
                                   </ui:GetValue.Target>
                                   <ui:GetValue.Value>
-                                    <OutArgument x:TypeArguments="x:String">[EasyApply]</OutArgument>
+                                    <OutArgument x:TypeArguments="x:String">[JobDetails]</OutArgument>
                                   </ui:GetValue.Value>
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -242,71 +233,160 @@
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
                                 </ui:GetValue>
-                                <ui:MultipleAssign sap2010:Annotation.AnnotationText="Find and assign the details of the &quot;JobRow&quot; variable which is a New row in &quot;JobsDataTable&quot;" DisplayName="Multiple Assign - &quot;JobRow&quot;" sap:VirtualizedContainerService.HintSize="334,233" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
-                                  <ui:MultipleAssign.AssignOperations>
-                                    <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
-                                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
-                                        <ui:AssignOperation.To>
-                                          <OutArgument x:TypeArguments="ui:UiElement">[JobElement]</OutArgument>
-                                        </ui:AssignOperation.To>
-                                        <ui:AssignOperation.Value>
-                                          <InArgument x:TypeArguments="ui:UiElement">[element.FindFirst(FindScope.FIND_DESCENDANTS,New Selector("&lt;webctrl id='ember*' tag='A' /&gt;"),EmptyPlaceholderResolver)]</InArgument>
-                                        </ui:AssignOperation.Value>
-                                      </ui:AssignOperation>
-                                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
-                                        <ui:AssignOperation.To>
-                                          <OutArgument x:TypeArguments="x:Object">[JobRow("Job Title")]</OutArgument>
-                                        </ui:AssignOperation.To>
-                                        <ui:AssignOperation.Value>
-                                          <InArgument x:TypeArguments="x:Object">[JobElement.Get("innertext").ToString.Trim]</InArgument>
-                                        </ui:AssignOperation.Value>
-                                      </ui:AssignOperation>
-                                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
-                                        <ui:AssignOperation.To>
-                                          <OutArgument x:TypeArguments="x:Object">[JobRow("URL")]</OutArgument>
-                                        </ui:AssignOperation.To>
-                                        <ui:AssignOperation.Value>
-                                          <InArgument x:TypeArguments="x:Object">[JobElement.Get("href").ToString.Split({"?"c})(0).Trim]</InArgument>
-                                        </ui:AssignOperation.Value>
-                                      </ui:AssignOperation>
-                                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
-                                        <ui:AssignOperation.To>
-                                          <OutArgument x:TypeArguments="x:Object">[JobRow("Easy Apply")]</OutArgument>
-                                        </ui:AssignOperation.To>
-                                        <ui:AssignOperation.Value>
-                                          <InArgument x:TypeArguments="x:Object">[EasyApply.Trim.Equals("Easy Apply")]</InArgument>
-                                        </ui:AssignOperation.Value>
-                                      </ui:AssignOperation>
-                                    </scg:List>
-                                  </ui:MultipleAssign.AssignOperations>
+                                <be:LanguageDetector sap2010:Annotation.AnnotationText="Detect the language of the &quot;JobDetails&quot; and save the result in Language and LanguageCode variables" DisplayName="Language Detector" sap:VirtualizedContainerService.HintSize="1176,94" sap2010:WorkflowViewState.IdRef="LanguageDetector_1" LanguageCode="[LanguageCode]" LanguageName="[Language]" Text="[JobDetails]">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
-                                </ui:MultipleAssign>
-                                <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="Add the &quot;JobRow&quot; to &quot;JobsDataTable&quot;" ArrayRow="[JobRow.ItemArray]" DataTable="[JobsDataTable]" DisplayName="Add Data Row - &quot;JobRow&quot; To &quot;JobsDataTable&quot;" sap:VirtualizedContainerService.HintSize="334,64" sap2010:WorkflowViewState.IdRef="AddDataRow_1">
+                                </be:LanguageDetector>
+                                <If sap2010:Annotation.AnnotationText="Check the language of the job details by checking if LanguageCode variable equal &quot;en&quot;" Condition="[LanguageCode.Equals(&quot;en&quot;)]" DisplayName="If - Job language IS English" sap:VirtualizedContainerService.HintSize="1176,1253" sap2010:WorkflowViewState.IdRef="If_1">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
-                                </ui:AddDataRow>
+                                  <If.Then>
+                                    <Sequence sap:VirtualizedContainerService.HintSize="797,1075" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                                      <Sequence.Variables>
+                                        <Variable x:TypeArguments="x:String" Name="EasyApply" />
+                                        <Variable x:TypeArguments="x:Boolean" Name="ButtonExist" />
+                                      </Sequence.Variables>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:UiElementExists sap2010:Annotation.AnnotationText="Check if Apply Button exist and save the result to &quot;ButtonExist&quot; variable" DisplayName="Element Exists - Apply Button" Exists="[ButtonExist]" sap:VirtualizedContainerService.HintSize="755,148" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+                                        <ui:UiElementExists.Target>
+                                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="619d25c6-12f0-4171-93dc-a4ba16909eab" InformativeScreenshot="67899b7f976bb507fd076d432d7442ed" Selector="&lt;html app='chrome.exe' title='*LinkedIn*' /&gt;&lt;webctrl id='ember*' tag='BUTTON' class='*jobs-apply-button*' /&gt;">
+                                            <ui:Target.TimeoutMS>
+                                              <InArgument x:TypeArguments="x:Int32" />
+                                            </ui:Target.TimeoutMS>
+                                            <ui:Target.WaitForReady>
+                                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                                            </ui:Target.WaitForReady>
+                                          </ui:Target>
+                                        </ui:UiElementExists.Target>
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:UiElementExists>
+                                      <If sap2010:Annotation.AnnotationText="Check if Apply Button Exist by checking &quot;ButtonExist&quot; variable" Condition="[ButtonExist]" DisplayName="If - Button Exist" sap:VirtualizedContainerService.HintSize="755,795" sap2010:WorkflowViewState.IdRef="If_3">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <If.Then>
+                                          <Sequence sap:VirtualizedContainerService.HintSize="376,617" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Get the text of the apply button to determine if the job is easy apply or not" DisplayName="Get Text - Apply BUTTON" sap:VirtualizedContainerService.HintSize="334,148" sap2010:WorkflowViewState.IdRef="GetValue_2">
+                                              <ui:GetValue.Target>
+                                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f8cafd15-0efc-4e24-b4ce-c39ab83a5f52" InformativeScreenshot="40cdeb3eab8a7d623f18cb87a690df4f" Selector="&lt;html app='chrome.exe' title='*LinkedIn*' /&gt;&lt;webctrl id='ember*' tag='BUTTON' class='*jobs-apply-button*' /&gt;" WaitForReady="COMPLETE">
+                                                  <ui:Target.TimeoutMS>
+                                                    <InArgument x:TypeArguments="x:Int32" />
+                                                  </ui:Target.TimeoutMS>
+                                                </ui:Target>
+                                              </ui:GetValue.Target>
+                                              <ui:GetValue.Value>
+                                                <OutArgument x:TypeArguments="x:String">[EasyApply]</OutArgument>
+                                              </ui:GetValue.Value>
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                            </ui:GetValue>
+                                            <ui:MultipleAssign sap2010:Annotation.AnnotationText="Find and assign the details of the &quot;JobRow&quot; variable which is a New row in &quot;JobsDataTable&quot;" DisplayName="Multiple Assign - &quot;JobRow&quot;" sap:VirtualizedContainerService.HintSize="334,233" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+                                              <ui:MultipleAssign.AssignOperations>
+                                                <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                                                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+                                                    <ui:AssignOperation.To>
+                                                      <OutArgument x:TypeArguments="ui:UiElement">[JobElement]</OutArgument>
+                                                    </ui:AssignOperation.To>
+                                                    <ui:AssignOperation.Value>
+                                                      <InArgument x:TypeArguments="ui:UiElement">[element.FindFirst(FindScope.FIND_DESCENDANTS,New Selector("&lt;webctrl id='ember*' tag='A' /&gt;"),EmptyPlaceholderResolver)]</InArgument>
+                                                    </ui:AssignOperation.Value>
+                                                  </ui:AssignOperation>
+                                                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                                                    <ui:AssignOperation.To>
+                                                      <OutArgument x:TypeArguments="x:Object">[JobRow("Job Title")]</OutArgument>
+                                                    </ui:AssignOperation.To>
+                                                    <ui:AssignOperation.Value>
+                                                      <InArgument x:TypeArguments="x:Object">[JobElement.Get("innertext").ToString.Trim]</InArgument>
+                                                    </ui:AssignOperation.Value>
+                                                  </ui:AssignOperation>
+                                                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                                                    <ui:AssignOperation.To>
+                                                      <OutArgument x:TypeArguments="x:Object">[JobRow("URL")]</OutArgument>
+                                                    </ui:AssignOperation.To>
+                                                    <ui:AssignOperation.Value>
+                                                      <InArgument x:TypeArguments="x:Object">[JobElement.Get("href").ToString.Split({"?"c})(0).Trim]</InArgument>
+                                                    </ui:AssignOperation.Value>
+                                                  </ui:AssignOperation>
+                                                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+                                                    <ui:AssignOperation.To>
+                                                      <OutArgument x:TypeArguments="x:Object">[JobRow("Easy Apply")]</OutArgument>
+                                                    </ui:AssignOperation.To>
+                                                    <ui:AssignOperation.Value>
+                                                      <InArgument x:TypeArguments="x:Object">[EasyApply.Trim.Equals("Easy Apply")]</InArgument>
+                                                    </ui:AssignOperation.Value>
+                                                  </ui:AssignOperation>
+                                                </scg:List>
+                                              </ui:MultipleAssign.AssignOperations>
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                            </ui:MultipleAssign>
+                                            <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="Add the &quot;JobRow&quot; to &quot;JobsDataTable&quot;" ArrayRow="[JobRow.ItemArray]" DataTable="[JobsDataTable]" DisplayName="Add Data Row - &quot;JobRow&quot; To &quot;JobsDataTable&quot;" sap:VirtualizedContainerService.HintSize="334,64" sap2010:WorkflowViewState.IdRef="AddDataRow_1">
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                            </ui:AddDataRow>
+                                          </Sequence>
+                                        </If.Then>
+                                        <If.Else>
+                                          <ui:Comment sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_2" Text="Do Nothing" />
+                                        </If.Else>
+                                      </If>
+                                    </Sequence>
+                                  </If.Then>
+                                  <If.Else>
+                                    <ui:Comment sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_1" Text="Do Nothing" />
+                                  </If.Else>
+                                </If>
                               </Sequence>
-                            </If.Then>
-                            <If.Else>
-                              <ui:Comment sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_1" Text="Do Nothing" />
-                            </If.Else>
-                          </If>
-                        </Sequence>
-                      </ActivityAction>
-                    </ui:ForEach.Body>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </ui:ForEach>
+                            </ActivityAction>
+                          </ui:ForEach.Body>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:ForEach>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Throw sap2010:Annotation.AnnotationText="If the &quot;JobsListExist&quot; is False throw a BusinessRuleException to be handled in catch section" DisplayName="Throw - BRE No Jobs Available" Exception="[New BusinessRuleException(&quot;No Jobs Available, your search criteria didn't return any jobs&quot;)]" sap:VirtualizedContainerService.HintSize="200,94" sap2010:WorkflowViewState.IdRef="Throw_1">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Throw>
+                    </If.Else>
+                  </If>
                 </Sequence>
               </ActivityAction>
             </ui:BrowserScope.Body>
@@ -316,14 +396,14 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:BrowserScope>
-          <ui:FileExistsX sap2010:Annotation.AnnotationText="Check if the jobs Excel sheet &quot;Jobs.xlsx&quot; exist and save the result in &quot;FileExist&quot; boolean variable" DisplayName="File Exists - &quot;Jobs.xlsx&quot;" Exists="[FileExist]" sap:VirtualizedContainerService.HintSize="909,174" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="Jobs.xlsx">
+          <ui:FileExistsX sap2010:Annotation.AnnotationText="Check if the jobs Excel sheet &quot;Jobs.xlsx&quot; exist and save the result in &quot;FileExist&quot; boolean variable" DisplayName="File Exists - &quot;Jobs.xlsx&quot;" Exists="[FileExist]" sap:VirtualizedContainerService.HintSize="1617,174" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="Jobs.xlsx">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:FileExistsX>
-          <If sap2010:Annotation.AnnotationText="Check if &quot;Jobs.xlsx&quot; exist by checking &quot;FileExist&quot; variable" Condition="[FileExist]" DisplayName="If - &quot;Jobs.xlsx&quot; exist" sap:VirtualizedContainerService.HintSize="909,336" sap2010:WorkflowViewState.IdRef="If_2">
+          <If sap2010:Annotation.AnnotationText="Check if &quot;Jobs.xlsx&quot; exist by checking &quot;FileExist&quot; variable" Condition="[FileExist]" DisplayName="If - &quot;Jobs.xlsx&quot; exist" sap:VirtualizedContainerService.HintSize="1617,336" sap2010:WorkflowViewState.IdRef="If_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -351,10 +431,10 @@
         </Sequence>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,287" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
@@ -375,6 +455,47 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:LogMessage>
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+        <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="400,510" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="ui:BusinessRuleException">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence sap:VirtualizedContainerService.HintSize="376,437" sap2010:WorkflowViewState.IdRef="Sequence_32">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage sap2010:Annotation.AnnotationText="Log the BusinessRuleException with Info Log Level" DisplayName="Log Message - [Info] BRE" sap:VirtualizedContainerService.HintSize="334,122" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[exception.Message]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:LogMessage>
+              <ui:CloseTab sap2010:Annotation.AnnotationText="Close the Browser for clean termination of the process" Browser="[in_LinkedInBrowser]" DisplayName="Close Tab - LinkedIn" sap:VirtualizedContainerService.HintSize="334,64" sap2010:WorkflowViewState.IdRef="CloseTab_1">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:CloseTab>
+              <TerminateWorkflow sap2010:Annotation.AnnotationText="Terminate the Workflow since this is a vital step for the rest of the automation" DisplayName="Terminate Workflow" Exception="[exception]" sap:VirtualizedContainerService.HintSize="334,79" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_1">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </TerminateWorkflow>
             </Sequence>
           </ActivityAction>
         </Catch>
