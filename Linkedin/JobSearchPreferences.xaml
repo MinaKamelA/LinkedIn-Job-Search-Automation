@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1306,1885</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>797,1467</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>JobSearchPreferences_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="31">
@@ -73,15 +73,15 @@
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="1316,1820" sap2010:WorkflowViewState.IdRef="Sequence_10">
+  <Sequence sap:VirtualizedContainerService.HintSize="807,1402" sap2010:WorkflowViewState.IdRef="Sequence_10">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch sap2010:Annotation.AnnotationText="Try excuting the workflow and catch any known unknown or Business exception that may happen, log the exception then send the default search page url to the next workflow or end the automation as this is a vital step for the rest of the automation" DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1274,1728" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+    <TryCatch sap2010:Annotation.AnnotationText="Try excuting the workflow and catch any known unknown or Business exception that may happen, log the exception then send the default search page url to the next workflow or end the automation as this is a vital step for the rest of the automation" DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="765,1310" sap2010:WorkflowViewState.IdRef="TryCatch_4">
       <TryCatch.Variables>
-        <Variable x:TypeArguments="x:String" Default="https://www.linkedin.com/jobs/search/?f_E=2&amp;f_WT=2&amp;keywords=rpa%20developer%20uipath&amp;location=Worldwide" Name="DefaultURL" />
+        <Variable x:TypeArguments="x:String" Default="https://www.linkedin.com/jobs/search/?f_E=2&amp;f_WT=2&amp;keywords=rpa%20developer%20uipath&amp;location=Worldwide&amp;f_AL=true" Name="DefaultURL" />
       </TryCatch.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -89,7 +89,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Flowchart sap2010:Annotation.AnnotationText="Display a Form for user to choose his job search preferences and create the search page url and save it in out_SearchPageURL argument&#xD;&#xA;&#xD;&#xA;Pre: Logged into LinkedIn - on homepage&#xA;Post: Logged into LinkedIn - on homepage" DisplayName="JobSearchPreferences" sap:VirtualizedContainerService.HintSize="1236,1437" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+        <Flowchart sap2010:Annotation.AnnotationText="Display a Form for user to choose his job search preferences and create the search page url and save it in out_SearchPageURL argument&#xA;&#xA;Pre: Logged into LinkedIn - on homepage&#xA;Post: Logged into LinkedIn - on homepage" DisplayName="JobSearchPreferences" sap:VirtualizedContainerService.HintSize="1236,1437" sap2010:WorkflowViewState.IdRef="Flowchart_1">
           <Flowchart.Variables>
             <Variable x:TypeArguments="x:String" Name="FormOutput" />
             <Variable x:TypeArguments="x:Boolean" Name="FormDismissed" />
@@ -185,7 +185,7 @@
               </sap:WorkflowViewStateService.ViewState>
             </ufa:FormActivity>
             <FlowStep.Next>
-              <FlowDecision x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="Check if user closed the form without submitting" Condition="[FormDismissed]" DisplayName="Flow Decision" sap:VirtualizedContainerService.HintSize="79,87" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
+              <FlowDecision x:Name="__ReferenceID0" sap2010:Annotation.AnnotationText="Check if user closed the form without submitting" Condition="[FormDismissed]" DisplayName="Flow Decision" sap:VirtualizedContainerService.HintSize="79,87" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -197,12 +197,11 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <FlowDecision.True>
-                  <FlowStep x:Name="__ReferenceID0">
+                  <FlowStep x:Name="__ReferenceID1">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <av:Point x:Key="ShapeLocation">210,653</av:Point>
                         <av:Size x:Key="ShapeSize">200,94</av:Size>
-                        <av:PointCollection x:Key="ConnectorLocation">310,653 310,653</av:PointCollection>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <Throw sap2010:Annotation.AnnotationText="If Search Form is dismissed Throw a BusinessRuleException to be handled in catch section" DisplayName="Throw - BRE &quot;User Cancelled&quot;" Exception="[New BusinessRuleException(&quot;User Cancelled the search and exited the process&quot;)]" sap:VirtualizedContainerService.HintSize="200,94" sap2010:WorkflowViewState.IdRef="Throw_1">
@@ -212,9 +211,6 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </Throw>
-                    <FlowStep.Next>
-                      <x:Reference>__ReferenceID0</x:Reference>
-                    </FlowStep.Next>
                   </FlowStep>
                 </FlowDecision.True>
                 <FlowDecision.False>
@@ -258,19 +254,19 @@
                                 <ActivityAction.Argument>
                                   <DelegateInArgument x:TypeArguments="njl:JProperty" Name="searchField" />
                                 </ActivityAction.Argument>
-                                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="538,751" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="765,930" sap2010:WorkflowViewState.IdRef="Sequence_2">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
-                                  <Switch x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Switch for the property name" DisplayName="Switch - &quot;searchField&quot; Name" Expression="[searchField.Name]" sap:VirtualizedContainerService.HintSize="496,659" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+                                  <Switch x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Switch for the property name" DisplayName="Switch - &quot;searchField&quot; Name" Expression="[searchField.Name]" sap:VirtualizedContainerService.HintSize="723,838" sap2010:WorkflowViewState.IdRef="Switch`1_1">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
-                                    <Sequence x:Key="jobTitle" sap:VirtualizedContainerService.HintSize="376,356" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                                    <Sequence x:Key="jobTitle" sap:VirtualizedContainerService.HintSize="376,311" sap2010:WorkflowViewState.IdRef="Sequence_3">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -323,7 +319,7 @@
                                               </scg:Dictionary>
                                             </sap:WorkflowViewStateService.ViewState>
                                           </Assign>
-                                          <ui:InterruptibleWhile sap2010:Annotation.AnnotationText="Loop from 1 to 6 to handle all possible ExperienceLevel values" DisplayName="While - &quot;iterationFactor&quot; less than or equal 6" sap:VirtualizedContainerService.HintSize="1026,888" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+                                          <ui:InterruptibleWhile sap2010:Annotation.AnnotationText="Loop from 1 to 6 to handle all possible ExperienceLevel values" Condition="[IterationFactor&lt;=6]" DisplayName="While - &quot;iterationFactor&quot; less than or equal 6" sap:VirtualizedContainerService.HintSize="1026,888" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
                                             <ui:InterruptibleWhile.Body>
                                               <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="990,692" sap2010:WorkflowViewState.IdRef="Sequence_5">
                                                 <sap:WorkflowViewStateService.ViewState>
@@ -395,9 +391,6 @@
                                                 </Assign>
                                               </Sequence>
                                             </ui:InterruptibleWhile.Body>
-                                            <ui:InterruptibleWhile.Condition>
-                                              <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="IterationFactor&lt;=6" />
-                                            </ui:InterruptibleWhile.Condition>
                                             <sap:WorkflowViewStateService.ViewState>
                                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -703,7 +696,7 @@
                                               </scg:Dictionary>
                                             </sap:WorkflowViewStateService.ViewState>
                                           </Assign>
-                                          <ui:InterruptibleWhile sap2010:Annotation.AnnotationText="Loop from 1 to 3 to handle all possible JobSite values" DisplayName="While - &quot;IterationFactor&quot; is less than or equal 3" sap:VirtualizedContainerService.HintSize="1026,877" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_2">
+                                          <ui:InterruptibleWhile sap2010:Annotation.AnnotationText="Loop from 1 to 3 to handle all possible JobSite values" Condition="[IterationFactor&lt;=3]" DisplayName="While - &quot;IterationFactor&quot; is less than or equal 3" sap:VirtualizedContainerService.HintSize="1026,877" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_2">
                                             <ui:InterruptibleWhile.Body>
                                               <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="990,681" sap2010:WorkflowViewState.IdRef="Sequence_8">
                                                 <sap:WorkflowViewStateService.ViewState>
@@ -775,9 +768,6 @@
                                                 </Assign>
                                               </Sequence>
                                             </ui:InterruptibleWhile.Body>
-                                            <ui:InterruptibleWhile.Condition>
-                                              <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="IterationFactor&lt;=3" />
-                                            </ui:InterruptibleWhile.Condition>
                                             <sap:WorkflowViewStateService.ViewState>
                                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -816,7 +806,7 @@
                                         </Catch>
                                       </TryCatch.Catches>
                                     </TryCatch>
-                                    <Sequence x:Key="easyApply" sap:VirtualizedContainerService.HintSize="683,461" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                                    <Sequence x:Key="easyApply" sap:VirtualizedContainerService.HintSize="683,535" sap2010:WorkflowViewState.IdRef="Sequence_11">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -937,8 +927,8 @@
               </FlowDecision>
             </FlowStep.Next>
           </FlowStep>
-          <x:Reference>__ReferenceID1</x:Reference>
           <x:Reference>__ReferenceID0</x:Reference>
+          <x:Reference>__ReferenceID1</x:Reference>
           <x:Reference>__ReferenceID2</x:Reference>
           <x:Reference>__ReferenceID3</x:Reference>
           <x:Reference>__ReferenceID4</x:Reference>
@@ -948,10 +938,10 @@
         </Flowchart>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="1240,21" sap2010:WorkflowViewState.IdRef="Catch`1_4">
+        <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="731,1084" sap2010:WorkflowViewState.IdRef="Catch`1_4">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
@@ -959,7 +949,7 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
             </ActivityAction.Argument>
-            <Sequence sap:VirtualizedContainerService.HintSize="725,907" sap2010:WorkflowViewState.IdRef="Sequence_14">
+            <Sequence sap:VirtualizedContainerService.HintSize="725,1011" sap2010:WorkflowViewState.IdRef="Sequence_14">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:String" Name="UseDefaultValues" />
               </Sequence.Variables>
@@ -982,7 +972,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:MessageBox>
-              <If sap2010:Annotation.AnnotationText="Check if user chose &quot;Yes&quot; to use default values" Condition="[UseDefaultValues.Equals(&quot;Yes&quot;)]" DisplayName="If - User Press &quot;Yes&quot;" sap:VirtualizedContainerService.HintSize="683,512" sap2010:WorkflowViewState.IdRef="If_17">
+              <If sap2010:Annotation.AnnotationText="Check if user chose &quot;Yes&quot; to use default values" Condition="[UseDefaultValues.Equals(&quot;Yes&quot;)]" DisplayName="If - User Press &quot;Yes&quot;" sap:VirtualizedContainerService.HintSize="683,616" sap2010:WorkflowViewState.IdRef="If_17">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -1005,7 +995,7 @@
                   </Assign>
                 </If.Then>
                 <If.Else>
-                  <Sequence sap:VirtualizedContainerService.HintSize="376,333" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                  <Sequence sap:VirtualizedContainerService.HintSize="376,437" sap2010:WorkflowViewState.IdRef="Sequence_13">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1018,6 +1008,13 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </ui:LogMessage>
+                    <ui:CloseTab sap2010:Annotation.AnnotationText="Close the Browser for clean termination of the process" Browser="[in_LinkedInBrowser]" DisplayName="Close Tab - LinkedIn" sap:VirtualizedContainerService.HintSize="334,64" sap2010:WorkflowViewState.IdRef="CloseTab_2">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:CloseTab>
                     <TerminateWorkflow sap2010:Annotation.AnnotationText="Terminate the Workflow since this is a vital step for the rest of the automation" DisplayName="Terminate Workflow" Exception="[exception]" sap:VirtualizedContainerService.HintSize="334,79" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_2">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1031,7 +1028,7 @@
             </Sequence>
           </ActivityAction>
         </Catch>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="1240,21" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="731,21" sap2010:WorkflowViewState.IdRef="Catch`1_5">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
